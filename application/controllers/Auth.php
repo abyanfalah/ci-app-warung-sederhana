@@ -15,11 +15,11 @@
 		public function login()
 		{
 
-			if ($this->session->has_userdata('username')) {
-				redirect(base_url());
-			}
+			// if ($this->session->has_userdata('username')) {
+			// 	redirect(base_url());
+			// }
 
-			var_dump($_POST);
+			// var_dump($_POST);
 			$data['title'] = 'login';
 			var_dump($this->session->userdata);
 
@@ -52,6 +52,7 @@
 					die();
 				}					
 
+				$user = $this->user_model->get_by_id($user['id'])->row_array();
 				$this->session->set_userdata($user);
 				header("location:".base_url());
 			}

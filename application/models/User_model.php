@@ -28,7 +28,7 @@
 					FROM user u INNER JOIN akses a
 					on u.id_akses = a.id
 					ORDER BY u.id;
-				")->result();
+				");
 		}
 
 		public function get_by_id($id)
@@ -47,7 +47,7 @@
 					on u.id_akses = a.id
 					WHERE u.id = '".$id."'
 					ORDER BY u.id;
-				")->row();
+				");
 		}
 
 		public function create()

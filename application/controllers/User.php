@@ -10,9 +10,9 @@
 			parent::__construct();
 			$this->load->model('user_model');
 
-			// if(!$this->session->userdata('username')){
-			// 	redirect(base_url('login'));
-			// }
+			if(!$this->session->userdata('username')){
+				redirect(base_url('login'));
+			}
 		}
 
 		public function index()

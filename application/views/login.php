@@ -29,7 +29,7 @@
 
             <div class="col-4 mr-5 pr-5">
                 <?php 
-                    if ($message = $this->session->flashdata('alert')) {
+                    if ($message = $this->session->flashdata('login_message')) {
                 ?>
                         <div class="alert alert-danger alert-dismissable fade show text-center"><?php echo $message; ?> <button class="close text-danger" data-dismiss="alert">&times;</button></div>
                 <?php

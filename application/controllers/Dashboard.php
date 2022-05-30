@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view($this->access."/_partials/header", $data);
 		$this->load->view($this->access."/_partials/sidebar", $data);
+		$this->load->view($this->access."/dashboard", $data);
 		$this->load->view($this->access."/_partials/footer");
 
 		// var_dump($this->session->userdata);

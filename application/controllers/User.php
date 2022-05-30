@@ -13,17 +13,22 @@
 			if(!$this->session->userdata('username')){
 				redirect(base_url('login'));
 			}
+			$this->access = $this->session->userdata('akses');
 		}
+
+		private $acess;
 
 		public function index()
 		{
-			$data['title'] = 'daftar user';
-			$data['user'] = $this->user_model->get_all();
+			$data = [
+				'title' => 'user',
+				'user'  => $this->user_model->get_all()->result()
+			];
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('user', $data);
-			$this->load->view('templates/footer');
-
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/user", $data);
+			$this->load->view($this->access."/_partials/footer");
 		}
 
 		public function add()

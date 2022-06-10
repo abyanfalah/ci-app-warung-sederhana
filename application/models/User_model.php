@@ -100,7 +100,7 @@
 
 		public function get_accesses()
 		{
-			return $this->db->get('akses')->result();
+			return $this->db->get('akses');
 		}
 
 

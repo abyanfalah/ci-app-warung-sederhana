@@ -31,14 +31,15 @@
 			$this->load->view($this->access."/_partials/footer");
 		}
 
-		public function add()
+		public function create()
 		{
 			$data['title'] = 'Registrasi user baru';
-			$data['access'] = $this->user_model->get_access();
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('user/add', $data);
-			$this->load->view('templates/footer', $data);
+			$data['access'] = $this->user_model->get_accesses()->result();
+			
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/user/create", $data);
+			$this->load->view($this->access."/_partials/footer");
 
 			if (isset($_POST['btn_signup'])) {
 				if ($_POST['nama'] == '' || $_POST['username'] == '' || $_POST['password'] == '') {
@@ -63,9 +64,10 @@
 				$data['title'] = 'Edit user '.$id;
 				$data['access'] = $this->user_model->get_access();
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('user/edit', $data);
-				$this->load->view('templates/footer', $data);
+				$this->load->view($this->access."/_partials/header", $data);
+				$this->load->view($this->access."/_partials/sidebar", $data);
+				$this->load->view($this->access."/user", $data);
+				$this->load->view($this->access."/_partials/footer");
 			}
 
 

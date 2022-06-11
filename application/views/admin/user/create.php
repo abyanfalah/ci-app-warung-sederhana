@@ -1,20 +1,3 @@
-<!-- <div class="row">
-	<div class="col-6 mx-auto">
-		<div class="card">
-			<div class="card-header">
-				<h3>Registrasi user baru</h3>
-
-			</div>
-			<div class="card-body">
-				<form action="api/user" method="post">
-					<input type="text" class="form-control " placeholder="name" name="name">
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
- -->
-
  <h3>Registrasi user baru</h3>
 
  <div class="row">
@@ -77,7 +60,10 @@
 			</div>
 		</div>
 
-		<div class="alert alert-danger" id="fieldAlert" style="display: none;">Semua kolom harus diisi!</div>
+		<div class="alert alert-danger" id="fieldAlert" style="display: none;">
+			Semua kolom harus diisi!
+			<button data-dismiss="alert" class="close">&times;</button>
+		</div>
 
 		<button class="btn btn-primary" id="btnSave">Simpan</button>
 

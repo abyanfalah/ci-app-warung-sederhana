@@ -1,4 +1,7 @@
 <h3>Daftar user</h3>
+
+<div class="alert alert-success" id="userCreatedAlert" style="display:none;">User baru telah terdaftar! <button data-dismiss="alert" class="close">&times;</button></div>
+
 <a class="btn btn-success" href="<?php echo base_url('user/create') ?>">Tambah user baru</a>
 <div class="card mt-3">
 	<!-- <div class="card-header"></div> -->
@@ -41,3 +44,5 @@
 		</table>
 	</div>
 </div>
+
+<script type="text/javascript" src="<?php echo base_url('assets/script/user.js') ?>"></script>

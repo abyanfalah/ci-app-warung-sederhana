@@ -55,8 +55,6 @@ $(document).ready(function(){
 			return false;
 		}
 
-		console.log('asdfjl lanjut')
-
 		$.ajax({
 			url: "/api/user",
 			type: "POST",
@@ -64,6 +62,7 @@ $(document).ready(function(){
 			success: function(res){
 				if (res.status == 200) {
 					window.location.replace('http://localhost:8000/user')
+					localStorage.setItem('userCreated', true)
 				}
 			}
 		})

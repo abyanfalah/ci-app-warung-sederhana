@@ -39,8 +39,6 @@
 						$status  = 500;
 					}
 
-					// var_dump($this->input->post());
-
 					break;
 				
 				case 'PUT':

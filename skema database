@@ -1,0 +1,42 @@
+user
+	id char 4
+	username
+	password
+	nama
+	alamat
+	lahir
+	id_akses
+
+akses
+	id int
+	nama
+
+barang
+	id char 4
+	nama
+	id_jenis
+	harga
+	satuan
+
+jenis_barang
+	id int
+	nama
+	
+satuan
+	nama varchar 64
+
+transaksi
+	id int 11
+	total
+	id_user
+
+detail_transaksi
+	id_transaksi int 11
+	id_barang char 4
+	qty
+
+
+
+
+
+

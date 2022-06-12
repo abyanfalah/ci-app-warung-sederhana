@@ -58,15 +58,12 @@ $(document).ready(function(){
 			type: "POST",
 			data: $("#formUpdateUser").serialize(),
 			success: function(res){
-				// if (res.status == 200) {
-				// 	// localStorage.setItem('user_id', res.user_id)
-				// 	// localStorage.setItem('alertMessage', 'update')
-				// 	// console.log(res)
-				// 	// window.location.replace('http://localhost:8000/user')
+				if (res.status == 200) {
+					localStorage.setItem('user_id', res.user_id)
+					localStorage.setItem('alertMessage', 'update')
+					window.location.replace('http://localhost:8000/user')
 
-				// }
-
-				console.log(res)
+				}
 			}
 		})
 	})

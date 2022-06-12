@@ -1,18 +1,19 @@
 $(document).ready(function(){
 	let message = "";
 	let action = "";
+	let userId = localStorage.getItem('user_id')
 	if (action = localStorage.getItem('alertMessage')) {
 		switch(localStorage.getItem('alertMessage')){
 			case "create":
-				message = "User created"
+				message = "User berhasil dibuat"
 				break;
 
 			case "update":
-				message = "User updated"
+				message = userId + " berhasil diupdate "
 				break;
 
 			case "delete":
-				message = "User deleted"
+				message = userId + " berhasil dihapus"
 				break;
 
 			default:
@@ -22,9 +23,9 @@ $(document).ready(function(){
 
 		console.log(localStorage)
 		console.log(message)
-		$("span#alertMessage").textContent = message;
-		// $("span").html = ""
+		$("#alertMessage").text(message)
 		$("#notificationAlert").show();
 		delete localStorage["alertMessage"];
+		delete localStorage["user_id"];
 	}
 })

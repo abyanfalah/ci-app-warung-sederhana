@@ -14,9 +14,14 @@
 				redirect(base_url('login'));
 			}
 			$this->access = $this->session->userdata('akses');
+			if ($this->access != 'admin') {
+				die('Anda bukan admin');
+			}
+
+			$this->session->unset_userdata('edit');
 		}
 
-		private $acess;
+		private $access;
 
 		public function index()
 		{
@@ -40,51 +45,19 @@
 			$this->load->view($this->access."/_partials/sidebar", $data);
 			$this->load->view($this->access."/user/create", $data);
 			$this->load->view($this->access."/_partials/footer");
-
-			if (isset($_POST['btn_signup'])) {
-				if ($_POST['nama'] == '' || $_POST['username'] == '' || $_POST['password'] == '') {
-					$this->session->set_flashdata('msg', 'Semua kolom harus diisi');
-					redirect(base_url('registrasi'));
-				}else{
-					$new_id = $this->user_model->new_id();
-					if ($this->user_model->insert()) {
-						$this->session->set_flashdata('msg', "User ".$new_id." berhasil ditambahkan ke daftar");
-						redirect(base_url('userlist'));
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal mendaftarkan user');
-						redirect(base_url('registrasi'));
-					}
-				}
-			}
 		}
 
 		public function edit($id = null)
 		{
-			if ($data['user'] = $this->user_model->get_by_id($id)) {
+			$this->session->set_userdata('edit', $id);
+			if ($data['user'] = $this->user_model->get_by_id($id)->row()) {
 				$data['title'] = 'Edit user '.$id;
-				$data['access'] = $this->user_model->get_access();
+				$data['access'] = $this->user_model->get_accesses()->result();
 
 				$this->load->view($this->access."/_partials/header", $data);
 				$this->load->view($this->access."/_partials/sidebar", $data);
-				$this->load->view($this->access."/user", $data);
+				$this->load->view($this->access."/user/update", $data);
 				$this->load->view($this->access."/_partials/footer");
-			}
-
-
-			if (isset($_POST['btn_save'])) {
-				if ($_POST['nama'] == '' || $_POST['username'] == '') {
-					$this->session->set_flashdata('msg', 'Semua kolom harus diisi');
-					redirect(base_url('user/edit/'.$id));
-				}else{
-					if ($this->user_model->edit($id)) {
-						$this->session->set_flashdata('msg', $id." Berhasil disunting");
-						redirect(base_url('userlist'));
-
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal menyunting informasi user '.$id);
-						redirect(base_url('user/edit/'.$id));
-					}
-				}
 			}
 		}
 
@@ -109,6 +82,17 @@
 			}else{
 				show_404();
 			}
+		}
+
+		public function change_username_password()
+		{
+			$data['user'] = $this->user_model->get_by_id($this->session->userdata('edit'));
+			$this->session->unset_userdata('edit');
+
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/user/change_username_password", $data);
+			$this->load->view($this->access."/_partials/footer");
 		}
 	}
 

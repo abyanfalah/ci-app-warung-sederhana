@@ -68,7 +68,7 @@
 		public function update($id)
 		{
 			$data = [
-				"username" => $this->input->post('username'),
+				// "username" => $this->input->post('username'),
 				"nama" => $this->input->post("nama"),
 				"alamat" => $this->input->post("alamat"),
 				"lahir" => $this->input->post("lahir"),

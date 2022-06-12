@@ -46,7 +46,6 @@ $(document).ready(function(){
 	})
 
 	$("#btnSave").click(function(e){
-		e.preventDefault();
 		if (! checkAllFields()) {
 			return false
 		}
@@ -56,13 +55,13 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/user",
+			url: "/api/user/create",
 			type: "POST",
 			data: $("#formCreateUser").serialize(),
 			success: function(res){
 				if (res.status == 200) {
+					localStorage.setItem('alertMessage', 'create')
 					window.location.replace('http://localhost:8000/user')
-					localStorage.setItem('userCreated', true)
 				}
 			}
 		})

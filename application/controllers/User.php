@@ -19,6 +19,7 @@
 			}
 
 			$this->session->unset_userdata('edit');
+			$this->session->unset_userdata('delete');
 		}
 
 		private $access;
@@ -49,8 +50,8 @@
 
 		public function edit($id = null)
 		{
-			$this->session->set_userdata('edit', $id);
 			if ($data['user'] = $this->user_model->get_by_id($id)->row()) {
+				$this->session->set_userdata('edit', $id);
 				$data['title'] = 'Edit user '.$id;
 				$data['access'] = $this->user_model->get_accesses()->result();
 
@@ -58,27 +59,21 @@
 				$this->load->view($this->access."/_partials/sidebar", $data);
 				$this->load->view($this->access."/user/update", $data);
 				$this->load->view($this->access."/_partials/footer");
+			}else{
+				show_404();
 			}
 		}
 
 		public function delete($id = null)
 		{
-			if ($data['user'] = $this->user_model->get_by_id($id)) {
+			if ($data['user'] = $this->user_model->get_by_id($id)->row()) {
 				$data['title'] = 'Hapus user '.$id;
+				$this->session->set_userdata('delete', $id);
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('user/delete', $data);
-				$this->load->view('templates/footer', $data);
-
-				if (isset($_POST['btn_proceed_delete'])) {
-					if ($this->user_model->delete($id)) {
-						$this->session->set_flashdata('msg', $id.' berhasil dihapus dari daftar');
-							redirect(base_url('userlist'));
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal menghapus '.$id);
-							redirect(base_url('userlist'));
-					}
-				}
+				$this->load->view($this->access."/_partials/header", $data);
+				$this->load->view($this->access."/_partials/sidebar", $data);
+				$this->load->view($this->access."/user/delete", $data);
+				$this->load->view($this->access."/_partials/footer");
 			}else{
 				show_404();
 			}

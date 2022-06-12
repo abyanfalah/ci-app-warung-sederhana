@@ -2,108 +2,80 @@
 	/**
 	 * 
 	 */
-	class Barang extends CI_Controller
+	class barang extends CI_Controller
 	{
 		
 		function __construct()
 		{
 			parent::__construct();
 			$this->load->model('barang_model');
-			$this->load->model('user_model');
-			$this->access = $this->session->userdata('akses');
 
-			if(! $this->session->userdata('username')){
+			if(!$this->session->userdata('username')){
 				redirect(base_url('login'));
 			}
+			$this->access = $this->session->userdata('akses');
+			if ($this->access != 'admin') {
+				die('Anda bukan admin');
+			}
+
+			$this->session->unset_userdata('edit');
+			$this->session->unset_userdata('delete');
 		}
 
 		private $access;
 
 		public function index()
-		{$data = [
-			'title' => 'Dashboard',
-			'Barang'  => $this->Barang_model->get_all(),
-		];
+		{
+			$data = [
+				'title' => 'barang',
+				'barang'  => $this->barang_model->get_all()->result()
+			];
 
-		$this->load->view($this->access."/_partials/header", $data);
-		$this->load->view($this->access."/_partials/sidebar", $data);
-		$this->load->view($this->access."/_partials/footer");
-
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/barang", $data);
+			$this->load->view($this->access."/_partials/footer");
 		}
 
-		public function add()
+		public function create()
 		{
-			$data['title'] = 'Registrasi user baru';
-			$data['access'] = $this->user_model->get_access();
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('user/add', $data);
-			$this->load->view('templates/footer', $data);
-
-			if (isset($_POST['btn_signup'])) {
-				if ($_POST['nama'] == '' || $_POST['username'] == '' || $_POST['password'] == '') {
-					$this->session->set_flashdata('msg', 'Semua kolom harus diisi');
-					redirect(base_url('registrasi'));
-				}else{
-					$new_id = $this->user_model->new_id();
-					if ($this->user_model->insert()) {
-						$this->session->set_flashdata('msg', "User ".$new_id." berhasil ditambahkan ke daftar");
-						redirect(base_url('userlist'));
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal mendaftarkan user');
-						redirect(base_url('registrasi'));
-					}
-				}
-			}
+			$data['title'] = 'Registrasi barang baru';
+			$data['jenis'] = $this->barang_model->get_jenis()->result();
+			$data['satuan'] = $this->barang_model->get_satuan()->result();
+			
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/barang/create", $data);
+			$this->load->view($this->access."/_partials/footer");
 		}
 
 		public function edit($id = null)
 		{
-			if ($data['user'] = $this->user_model->get_by_id($id)) {
-				$data['title'] = 'Edit user '.$id;
-				$data['access'] = $this->user_model->get_access();
+			if ($data['barang'] = $this->barang_model->get_by_id($id)->row()) {
+				$this->session->set_userdata('edit', $id);
+				$data['title'] = 'Edit barang '.$id;
+				$data['jenis'] = $this->barang_model->get_jenis()->result();
+				$data['satuan'] = $this->barang_model->get_satuan()->result();
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('user/edit', $data);
-				$this->load->view('templates/footer', $data);
-			}
-
-
-			if (isset($_POST['btn_save'])) {
-				if ($_POST['nama'] == '' || $_POST['username'] == '') {
-					$this->session->set_flashdata('msg', 'Semua kolom harus diisi');
-					redirect(base_url('user/edit/'.$id));
-				}else{
-					if ($this->user_model->edit($id)) {
-						$this->session->set_flashdata('msg', $id." Berhasil disunting");
-						redirect(base_url('userlist'));
-
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal menyunting informasi user '.$id);
-						redirect(base_url('user/edit/'.$id));
-					}
-				}
+				$this->load->view($this->access."/_partials/header", $data);
+				$this->load->view($this->access."/_partials/sidebar", $data);
+				$this->load->view($this->access."/barang/update", $data);
+				$this->load->view($this->access."/_partials/footer");
+			}else{
+				show_404();
 			}
 		}
 
 		public function delete($id = null)
 		{
-			if ($data['user'] = $this->user_model->get_by_id($id)) {
-				$data['title'] = 'Hapus user '.$id;
+			if ($data['barang'] = $this->barang_model->get_by_id($id)->row()) {
+				$data['title'] = 'Hapus barang '.$id;
+				$this->session->set_userdata('delete', $id);
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('user/delete', $data);
-				$this->load->view('templates/footer', $data);
-
-				if (isset($_POST['btn_proceed_delete'])) {
-					if ($this->user_model->delete($id)) {
-						$this->session->set_flashdata('msg', $id.' berhasil dihapus dari daftar');
-							redirect(base_url('userlist'));
-					}else{
-						$this->session->set_flashdata('msg', 'Gagal menghapus '.$id);
-							redirect(base_url('userlist'));
-					}
-				}
+				$this->load->view($this->access."/_partials/header", $data);
+				$this->load->view($this->access."/_partials/sidebar", $data);
+				$this->load->view($this->access."/barang/delete", $data);
+				$this->load->view($this->access."/_partials/footer");
 			}else{
 				show_404();
 			}

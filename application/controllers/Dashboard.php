@@ -10,6 +10,8 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 		$this->access = $this->session->userdata('akses');
+		$this->session->unset_userdata('edit');
+		$this->session->unset_userdata('delete');
 	}
 
 	public function index()

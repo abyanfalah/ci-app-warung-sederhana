@@ -68,7 +68,6 @@
 		public function update($id)
 		{
 			$data = [
-				// "username" => $this->input->post('username'),
 				"nama" => $this->input->post("nama"),
 				"alamat" => $this->input->post("alamat"),
 				"lahir" => $this->input->post("lahir"),
@@ -107,7 +106,7 @@
 		public function new_id()
 		{
 			$id = 'U001';
-			$last = $this->db->query("SELECT id FROM user  ORDER BY id DESC LIMIT 1")->row()->id;
+			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row()->id;
 
 			if ($last) {
 				$new = substr($last, 1);

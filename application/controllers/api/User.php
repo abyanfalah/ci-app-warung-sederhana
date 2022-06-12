@@ -72,9 +72,9 @@
 			echo json_encode($res);
 		}
 
-		public function delete($id = null)
+		public function delete()
 		{
-			if (! $id) {
+			if (! $id = $this->session->userdata('delete')) {
 				die("id needed to perform deletion");
 			}
 
@@ -85,9 +85,16 @@
 					"message" => "user deleted",
 					"status"  => 200
 				];
+			}else{
+				$res = [
+					"result"  => $result,
+					"barang_id" => $id,
+					"message" => "user not deleted",
+					"status"  => 500
+				];
+			}
 				header("Content-type: application/json");
 				echo json_encode($res);
-			}
 		}
 	}
  ?>

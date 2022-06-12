@@ -35,16 +35,22 @@
 				];
 				header("Content-type: application/json");
 				echo json_encode($res);
-				// var_dump($_POST);
-
 			}
 		}
 
-		public function update($id = null)
+		public function update()
 		{
-			if (! $id) {
-				die("id needed to perform updation");
+			if(! $id = $this->session->userdata('edit')){
+				die('You need the id to perform updation');
 			}
+
+			if(! $this->input->post()){
+				$res = [
+					"message" => "where's the data, bruh?",
+					"status"  => 69420
+				];
+			}
+
 
 			if ($result = $this->barang_model->update($id)) {
 				$res = [
@@ -53,14 +59,22 @@
 					"message" => "barang updated",
 					"status"  => 200
 				];
-				header("Content-type: application/json");
-				echo json_encode($res);
+			}else{
+				$res = [
+					"result"  => $result,
+					"barang_id" => $id,
+					"message" => "barang not updated",
+					"status"  => 500
+				];
 			}
+
+			header("Content-type: application/json");
+			echo json_encode($res);
 		}
 
-		public function delete($id = null)
+		public function delete()
 		{
-			if (! $id) {
+			if (! $id = $this->session->userdata('delete')) {
 				die("id needed to perform deletion");
 			}
 
@@ -71,9 +85,16 @@
 					"message" => "barang deleted",
 					"status"  => 200
 				];
+			}else{
+				$res = [
+					"result"  => $result,
+					"barang_id" => $id,
+					"message" => "barang not deleted",
+					"status"  => 500
+				];
+			}
 				header("Content-type: application/json");
 				echo json_encode($res);
-			}
 		}
 	}
  ?>

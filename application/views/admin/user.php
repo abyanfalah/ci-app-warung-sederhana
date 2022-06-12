@@ -36,7 +36,7 @@
 							<a href="<?php echo base_url('user/edit/'.$u->id) ?>" class="btn btn-warning">
 								<i class="fas fa-pen"></i>
 							</a>
-							<a href="" class="btn btn-danger">
+							<a href="<?php echo base_url('user/delete/'.$u->id) ?>" class="btn btn-danger">
 								<i class="fas fa-trash"></i>
 							</a>
 						</td>

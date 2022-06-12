@@ -17,17 +17,15 @@
 		{
 			return $this->db->query("
 					SELECT 
-						u.id,
-						u.username,
-						u.password,
-						u.nama,
-						u.alamat,
-						u.lahir,
-						u.id_akses,
-						a.nama as akses
-					FROM user u INNER JOIN akses a
-					on u.id_akses = a.id
-					ORDER BY u.id;
+						b.id,
+						b.nama,
+						jb.nama as jenis,
+						b.harga,
+						b.satuan,
+						b.stok
+					FROM barang b INNER JOIN jenis_barang jb
+					on b.id_jenis = jb.id
+					ORDER BY b.id;
 				");
 		}
 
@@ -35,18 +33,15 @@
 		{
 			return $this->db->query("
 					SELECT 
-						u.id,
-						u.username,
-						u.password,
-						u.nama,
-						u.alamat,
-						u.lahir,
-						u.id_akses,
-						a.nama as akses
-					FROM user u INNER JOIN akses a
-					on u.id_akses = a.id
-					WHERE u.id = '".$id."'
-					ORDER BY u.id;
+						b.id,
+						b.nama,
+						jb.nama as jenis,
+						b.harga,
+						b.satuan,
+						b.stok
+					FROM barang b INNER JOIN jenis_barang jb
+					on b.id_jenis = jb.id
+					WHERE b.id = '".$id."'
 				");
 		}
 
@@ -54,12 +49,10 @@
 		{
 			$data = [
 				"id" => $this->new_id(),
-				"username" => $this->input->post('username'),
-				"password" => sha1($this->input->post('password')),
 				"nama" => $this->input->post("nama"),
-				"alamat" => $this->input->post("alamat"),
-				"lahir" => $this->input->post("lahir"),
-				"id_akses" => $this->input->post("akses")
+				"id_jenis" => $this->input->post("jenis"),
+				"harga" => $this->input->post("harga"),
+				"satuan" => $this->input->post("satuan")
 			];
 
 			return $this->db->insert($this->table, $data);
@@ -68,11 +61,10 @@
 		public function update($id)
 		{
 			$data = [
-				"username" => $this->input->post('username'),
 				"nama" => $this->input->post("nama"),
-				"alamat" => $this->input->post("alamat"),
-				"lahir" => $this->input->post("lahir"),
-				"id_akses" => $this->input->post("akses")
+				"id_jenis" => $this->input->post("jenis"),
+				"harga" => $this->input->post("harga"),
+				"satuan" => $this->input->post("satuan")
 			];
 
 			return $this->db->update($this->table, $data, ["id" => $id]);
@@ -83,31 +75,26 @@
 			return $this->db->delete($this->table, ["id" => $id]);
 		}
 
-		public function check_username()
+		public function get_jenis()
 		{
-			return $this->db->get_where($this->table, [
-				"username" => $this->input->post('username')
-			])->num_rows();
+			return $this->db->get('jenis_barang');
 		}
 
-		public function check_username_with_password()
+		public function get_satuan()
 		{
-			return $this->db->get_where($this->table, [
-				"username" => $this->input->post('username'),
-				"password" => sha1($this->input->post('password'))
-			])->row_array();
+			return $this->db->get('satuan');
 		}
 
-		public function get_accesses()
+		public function add_stok($id)
 		{
-			return $this->db->get('akses')->result();
+			$this->db->set('stok');
+			return $this->db->update($this->table, $this->input->post('stok'), ["id" => $id]);
 		}
-
 
 		public function new_id()
 		{
-			$id = 'U001';
-			$last = $this->db->query("SELECT id FROM user  ORDER BY id DESC LIMIT 1")->row()->id;
+			$id = 'B001';
+			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row()->id;
 
 			if ($last) {
 				$new = substr($last, 1);

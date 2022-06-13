@@ -9,7 +9,6 @@ $(document).ready(function(){
 					localStorage.setItem('alertMessage', 'delete')
 					window.location.replace('/barang')
 				}
-				// console.log(res)
 			}
 		})
 	})

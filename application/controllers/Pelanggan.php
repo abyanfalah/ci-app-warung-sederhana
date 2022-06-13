@@ -2,13 +2,13 @@
 	/**
 	 * 
 	 */
-	class Barang extends CI_Controller
+	class Pelanggan extends CI_Controller
 	{
 		
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('barang_model');
+			$this->load->model('pelanggan_model');
 
 			if(!$this->session->userdata('username')){
 				redirect(base_url('login'));
@@ -27,54 +27,52 @@
 		public function index()
 		{
 			$data = [
-				'title' => 'barang',
-				'barang'  => $this->barang_model->get_all()->result()
+				'title' => 'pelanggan',
+				'pelanggan'  => $this->pelanggan_model->get_all()->result()
 			];
 
 			$this->load->view($this->access."/_partials/header", $data);
 			$this->load->view($this->access."/_partials/sidebar", $data);
-			$this->load->view($this->access."/barang", $data);
+			$this->load->view($this->access."/pelanggan", $data);
 			$this->load->view($this->access."/_partials/footer");
 		}
 
 		public function create()
 		{
-			$data['title'] = 'Registrasi barang baru';
-			$data['jenis'] = $this->barang_model->get_jenis()->result();
-			$data['satuan'] = $this->barang_model->get_satuan()->result();
-			
+			$data['title'] = 'Registrasi pelanggan baru';
+
 			$this->load->view($this->access."/_partials/header", $data);
 			$this->load->view($this->access."/_partials/sidebar", $data);
-			$this->load->view($this->access."/barang/create", $data);
+			$this->load->view($this->access."/pelanggan/create", $data);
 			$this->load->view($this->access."/_partials/footer");
 		}
 
-		public function edit($id = null)
+		public function edit($nama = null)
 		{
-			if ($data['barang'] = $this->barang_model->get_by_id($id)->row()) {
-				$this->session->set_userdata('edit', $id);
-				$data['title'] = 'Edit barang '.$id;
-				$data['jenis'] = $this->barang_model->get_jenis()->result();
-				$data['satuan'] = $this->barang_model->get_satuan()->result();
+			if ($data['pelanggan'] = $this->pelanggan_model->get_by_id($nama)->row()) {
+				$this->session->set_userdata('edit', $nama);
+				$data['title'] = 'Edit pelanggan '.$nama;
+				$data['jenis'] = $this->pelanggan_model->get_jenis()->result();
+				$data['satuan'] = $this->pelanggan_model->get_satuan()->result();
 
 				$this->load->view($this->access."/_partials/header", $data);
 				$this->load->view($this->access."/_partials/sidebar", $data);
-				$this->load->view($this->access."/barang/update", $data);
+				$this->load->view($this->access."/pelanggan/update", $data);
 				$this->load->view($this->access."/_partials/footer");
 			}else{
 				show_404();
 			}
 		}
 
-		public function delete($id = null)
+		public function delete($nama = null)
 		{
-			if ($data['barang'] = $this->barang_model->get_by_id($id)->row()) {
-				$data['title'] = 'Hapus barang '.$id;
-				$this->session->set_userdata('delete', $id);
+			if ($data['pelanggan'] = $this->pelanggan_model->get_by_id($nama)->row()) {
+				$data['title'] = 'Hapus pelanggan '.$nama;
+				$this->session->set_userdata('delete', $nama);
 
 				$this->load->view($this->access."/_partials/header", $data);
 				$this->load->view($this->access."/_partials/sidebar", $data);
-				$this->load->view($this->access."/barang/delete", $data);
+				$this->load->view($this->access."/pelanggan/delete", $data);
 				$this->load->view($this->access."/_partials/footer");
 			}else{
 				show_404();

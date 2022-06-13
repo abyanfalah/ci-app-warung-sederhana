@@ -61,6 +61,12 @@
         <span>Transaksi Baru</span></a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url('testpage') ?>">
+        <i class="fas fa-fw fa-money"></i>
+        <span>Testpage</span></a>
+</li>
+
 <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>

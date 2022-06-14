@@ -51,9 +51,9 @@
 			return $this->db->update($this->table, $data, ["telpon" => $old_telpon]);
 		}
 
-		public function delete($nama)
+		public function delete($telpon)
 		{
-			return $this->db->delete($this->table, ["nama" => $nama]);
+			return $this->db->delete($this->table, ["telpon" => $telpon]);
 		}
 	}
 ?>

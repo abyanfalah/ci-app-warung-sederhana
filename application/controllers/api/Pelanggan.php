@@ -89,14 +89,19 @@
 
 		public function delete()
 		{
-			if (! $nama = $this->session->userdata('delete')) {
-				die("nama needed to perform deletion");
+			// var_dump($this->input->post());
+
+			if (! $telpon = $this->input->post('telpon')) {
+				die("telpon number needed to perform deletion");
+			}else{
+				$data = $this->pelanggan_model->get_by_telpon($telpon)->row();
 			}
 
-			if ($result = $this->pelanggan_model->delete($nama)) {
+			if ($result = $this->pelanggan_model->delete($telpon)) {
 				$res = [
 					"result"  => $result,
-					"pelanggan_nama" => $nama,
+					"pelanggan_nama" => $data->nama,
+					"pelanggan_telpon" => $data->telpon,
 					"message" => "pelanggan deleted",
 					"status"  => 200
 				];

@@ -43,7 +43,7 @@
 
 							<!-- button delete -->
 							<button
-							data-nama="<?php echo ucwords($p->nama) ?>"
+							data-nama="<?php echo $p->nama ?>"
 							data-telpon="<?php echo $p->telpon; ?>"
 							class="btn btn-danger btnDelete"
 
@@ -109,7 +109,7 @@
 	<div class="modal-dialog modal-dialog-centered ">
 		<div class="modal-content">
 			<div class="modal-body">
-				<h4>Update data pelanggan:  <span class="pelangganName"></span></h4>
+				<h4>Edit data pelanggan:  <span class="pelangganName"></span></h4>
 
 				<!-- form update pelanggan -->
 				<form id="formUpdatePelanggan" method="post" class="col-8 mx-auto my-3">
@@ -151,11 +151,11 @@
 
 
 <!-- modal delete -->
-<div id="modalDeletePelanggan" class="modal fade" data-backdrop="static">
+<div id="modalDeletePelanggan" class="modal fade">
 	<div class="modal-dialog modal-dialog-centered ">
 		<div class="modal-content">
 			<div class="modal-body">
-				<h4>Hapus pelanggan:  <span class="pelangganName"></span></h4>
+				<h4>Hapus pelanggan:  <span class="pelangganName"></span>?</h4>
 				</form>
 			</div>
 

@@ -1,4 +1,13 @@
 $(document).ready(function(){
+	
+	// ==========
+	// global variables
+
+	let nama
+	let telpon
+	// ==========
+
+
 	function checkAllFields(formId){
 		let form = "#" + formId;
 		if (
@@ -41,6 +50,8 @@ $(document).ready(function(){
 
 	// update section
 	$(".btnUpdate").on("click", function(){
+		$("span.pelangganName").text($(this).attr('data-nama'))
+
 		let nama = $(this).attr('data-nama')
 		let telpon = $(this).attr('data-telpon')
 		let alamat = $(this).attr('data-alamat')
@@ -79,17 +90,24 @@ $(document).ready(function(){
 	})
 
 	// delete section
-	$("#proceedDelete").click(function(){
+	$(".btnDelete").on("click", function(){
+		nama = $(this).attr("data-nama")
+		telpon = $(this).attr("data-telpon")
+		$("span.pelangganName").text(nama)
+
+	})
+
+	$("#btnProceedDelete").click(function(){
+
 		$.ajax({
 			url: "/api/pelanggan/delete",
 			type: "POST",
-			// data: 
+			data: {telpon: telpon},
 			success: function(res){
 				if (res.status == 200) {
 					$("#modalDeletePelanggan").modal("hide")
-					$("input").val("")
-					console.log(res)
 				}
+				console.log(res)
 			}
 		})
 	})
@@ -103,20 +121,5 @@ $(document).ready(function(){
 			// checkAllFields();
 			$(".fieldAlert").fadeOut();
 		}
-	})
-
-	$("#btnTestUpdate").click(function(){
-		$.ajax({
-			url: "/api/pelanggan/update",
-			type: "POST",
-			data: $("#formUpdatePelanggan").serializeArray(),
-			success: function(res){
-				if (res.status == 200) {
-					$("#modalDeletePelanggan").modal("hide")
-					$("input").val("")
-					console.log(res)
-				}
-			}
-		})
 	})
 })

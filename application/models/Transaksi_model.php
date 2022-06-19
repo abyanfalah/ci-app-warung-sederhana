@@ -79,13 +79,19 @@
 
 			if ($last) {
 				$last = $last->id;
-				$new = substr($last, 8);
-				$new++;
-				$new = substr($id, 0, -(strlen($new))).$new;
-				
-				return date("Ymd").$new;
+				$today = date("Ymd");
+				$last_date = substr($last, 0, 8);
+
+				if ($last_date == $today) {
+					$new = substr($last, 8);
+					$new++;
+					$new = substr($id, 0, -(strlen($new))).$new;
+					return $today.$new;
+				}else{
+					return $today.$id;	
+				}
 			}else{
-				return date("Ymd").$id;
+				return $today.$id;
 			}
 		}
 

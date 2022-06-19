@@ -15,26 +15,30 @@
 
 		public function get_all()
 		{
-			// return $this->db->get($this->table);
 			return $this->db->query("
 				SELECT
 					t.id,
 					t.total,
-					u.nama as user
-				FROM transaksi t INNER JOIN user u ON t.id_user = u.id
+					u.nama as user,
+					-- p.nama as pelanggan
+					t.pelanggan as pelanggan
+				FROM transaksi t 
+				INNER JOIN user u ON t.id_user = u.id
+				-- INNER JOIN pelanggan p ON t.pelanggan = p.nama
 				ORDER BY t.id
 			");
 		}
 
 		public function get_by_id($id)
 		{
-			// return $this->db->get_where($this->table, ["id" => $id]);
 			return $this->db->query("
 				SELECT
 					t.id,
 					t.total,
-					u.nama as user
+					u.nama as user,
+					p.nama as pelanggan
 				FROM transaksi t INNER JOIN user u ON t.id_user = u.id
+				INNER JOIN pelanggan p ON t.pelanggan = p.nama
 				WHERE t.id = $id
 				ORDER BY t.id
 			");
@@ -45,7 +49,8 @@
 			$data = [
 				"id" => $this->new_id(),
 				"total" => $this->input->post('total'),
-				"id_user" => $this->input->post('id_user')
+				"id_user" => $this->input->post('id_user'),
+				"pelanggan" => $this->input->post('pelanggan')
 			];
 			return $this->db->insert($this->table, $data);
 		}

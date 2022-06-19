@@ -11,6 +11,7 @@
 			$this->load->model('barang_model');
 			$this->load->model('user_model');
 			$this->load->model('transaksi_model');
+			$this->load->model('pelanggan_model');
 
 			if(!$this->session->userdata('username')){
 				redirect(base_url('login'));
@@ -25,12 +26,12 @@
 
 		public function index()
 		{
-			// var_dump($this->transaksi_model->new_id());
 
+			// var_dump($this->transaksi_model->get_all()->result());
 			$data = [
-				'title' => 'transaksi',
-				'transaksi'  => $this->transaksi_model->get_all()->result(),
-				'barang'  => $this->barang_model->get_all()->result()
+				'title'     => 'transaksi',
+				'transaksi' => $this->transaksi_model->get_all()->result(),
+				'barang'    => $this->barang_model->get_all()->result()
 			];
 
 			$data['new_id'] = $this->transaksi_model->new_id();
@@ -45,6 +46,8 @@
 		{
 			$data['title'] = 'transaksi baru';
 			$data['barang'] = $this->barang_model->get_all()->result();
+			$data['pelanggan'] = $this->pelanggan_model->get_all()->result();
+
 			
 			$this->load->view($this->access."/_partials/header", $data);
 			$this->load->view($this->access."/_partials/sidebar", $data);

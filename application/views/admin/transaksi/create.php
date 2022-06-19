@@ -5,12 +5,16 @@
 		<div class="">
 			<div class="card">
 				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<strong>Barang</strong>
+						</div>
+						<div class="col">
+							<input type="text" placeholder="ketik disini untuk mencari" class="form-control">
+						</div>
+					</div>
 					<table class="table table-borderless table-striped">
 					<thead>
-						<tr>
-							<h5 class="mt-3 bg-primary text-white text-center rounded  p-2">Barang</h5>
-							<input type="text" placeholder="ketik disini untuk mencari" class="form-control">
-						</tr>
 						<tr>
 							<th>#</th>
 							<th>ID</th>
@@ -60,16 +64,30 @@
 			<div class=" h-75">
 				<div class="card bg-primary shadow text-white">
 					<div class="card-body">
+						<div class="mb-3 row">
+							<div class="col">
+								<strong>Pelanggan:</strong><br>
+								<small>Opsional</small>
+							</div>
+							<div class="col-8">
+								<input id="pelangganInput" type="text" class="form-control" placeholder="no_name" list="pelanggan_list">
+								<datalist id="pelanggan_list">
+								<?php foreach($pelanggan as $p): ?>
+									<option><?php echo $p->nama; ?></option>
+								<?php endforeach; ?>
+								</datalist>
+							</div>
+						</div>
 						<button id="btnCheckout" class="ml-auto btn btn-secondary" disabled data-toggle="modal" data-target="#modalCheckout">Checkout</button>
 						<table class="table table-borderless">
 							<thead class="text-white">
-								<tr>
+								<!-- <tr>
 									<div class="mt-3 bg-white text-primary text-center rounded  p-2">
 											Keranjang
 										</div>
 
 									</div>
-								</tr>
+								</tr> -->
 								<tr>
 									<th class="col-1">#</th>
 									<th>ID</th>

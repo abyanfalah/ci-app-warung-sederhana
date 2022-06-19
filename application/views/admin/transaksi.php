@@ -1,7 +1,4 @@
 <!-- <h3>Transaksi</h3> -->
-<?php 
-	die(var_dump($this->transaksi_model->new_id()));
- ?>
 <div class="card mt-3">
 	<div class="card-body">
 		<table class="table table-borderless table-striped">
@@ -15,19 +12,28 @@
 				</tr>
 			</thead>
 
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td><?php echo date("Ymd")."001" ?></td>
-					<td>Rp 15.000</td>
-					<td>Admin</td>
-					<td>Asep</td>
-					<td>
-						<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalView">
-							<i class="fas fa-eye"></i>
-						</button>
-					</td>
-				</tr>
+			<tbody id="tableTransaksi">
+				<?php 
+					$counter = 1;
+					foreach($transaksi as $t):
+				 ?>
+				 		<tr>
+				 			<td><?php echo $counter++; ?></td>
+				 			<td><?php echo $t->id; ?></td>
+				 			<td>Rp <?php echo number_format($t->total); ?></td>
+				 			<td><?php echo ucwords($t->user);?></td>
+				 			<td><?php echo $t->pelanggan?></td>
+				 			<td>
+				 				<button 
+				 				class="btn btn-warning btnShowDetail"
+				 				data-id="<?php echo $t->id; ?>"
+				 				>
+				 					<i class="fas fa-eye"></i>
+				 				</button>
+				 			</td>
+				 		</tr>
+
+				<?php endforeach; ?>
 			</tbody>
 		</table>
 	</div>

@@ -235,9 +235,14 @@ function saveTransaction(){
 
 	// simpan transaksi baru
 	let id_transaksi
+	let pelanggan
+	if (! (pelanggan = $("#pelangganInput").val())) {
+		 pelanggan = "no_name"
+	}
 	let data = {
 		total : _total,
-		id_user: userId
+		id_user: userId,
+		pelanggan: pelanggan
 	}
 	$.ajax({
 		url : "/api/transaksi/create",
@@ -334,6 +339,7 @@ $(document).ready(function(){
 		saveTransaction()
 		_keranjang = {}
 		updateKeranjang()
+		$("#pelangganInput").val("")
 		$("#modalCheckout").modal('hide')
 	})
 

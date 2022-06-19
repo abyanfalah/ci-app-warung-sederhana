@@ -1,4 +1,7 @@
 <!-- <h3>Transaksi</h3> -->
+<?php 
+	die(var_dump($this->transaksi_model->new_id()));
+ ?>
 <div class="card mt-3">
 	<div class="card-body">
 		<table class="table table-borderless table-striped">

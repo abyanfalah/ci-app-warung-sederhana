@@ -106,9 +106,10 @@
 		public function new_id()
 		{
 			$id = 'U001';
-			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row()->id;
+			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row();
 
 			if ($last) {
+				$last = $last->id;
 				$new = substr($last, 1);
 				$new++;
 				$new = substr($id, 0, -(strlen($new))).$new;

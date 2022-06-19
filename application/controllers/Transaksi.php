@@ -33,6 +33,8 @@
 				'barang'  => $this->barang_model->get_all()->result()
 			];
 
+			$data['new_id'] = $this->transaksi_model->new_id();
+
 			$this->load->view($this->access."/_partials/header", $data);
 			$this->load->view($this->access."/_partials/sidebar", $data);
 			$this->load->view($this->access."/transaksi", $data);

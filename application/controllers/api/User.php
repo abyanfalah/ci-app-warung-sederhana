@@ -96,5 +96,14 @@
 				header("Content-type: application/json");
 				echo json_encode($res);
 		}
+
+		public function get_current_user_id()
+		{
+			$res = [
+				"id" => $this->session->userdata('id')
+			];
+			header("Content-type: application/json");
+			echo json_encode($res);
+		}
 	}
  ?>

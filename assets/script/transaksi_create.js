@@ -1,15 +1,25 @@
 let _barang = {}
 let _keranjang = {}
 let id
+let _total = 0
 
-$.get("/api/barang", function(res){
+
+	$.get("/api/barang", function(res){
 	for(let index of Object.keys(res)){
-		_barang[res[index].id] = {}
-		_barang[res[index].id].nama = res[index].nama 
-		_barang[res[index].id].harga = res[index].harga 
-		_barang[res[index].id].stok = res[index].stok 
-	}
-})
+			_barang[res[index].id] = {}
+			_barang[res[index].id].nama = res[index].nama 
+			_barang[res[index].id].harga = res[index].harga 
+			_barang[res[index].id].stok = res[index].stok 
+		}
+	})
+
+
+function refresh(){
+	// fetch object barang dari database
+
+
+
+}
 
 
 function checkStok(id){
@@ -174,8 +184,8 @@ function createTableDetailTransaksi(){
 
 	let counter = 1
 	let tr, td
-	let total = 0
 	let subtotal = 0
+	_total = 0
 	
 	
 
@@ -205,18 +215,91 @@ function createTableDetailTransaksi(){
 	
 		$("#tableDetailTransaksi").append(tr)
 
-		total += subtotal
+		_total += subtotal
 	}
 
-	$("#grandTotal").text("Rp " + total)
+	$("#grandTotal").text("Rp " + _total)
 }
 
-function pay(){
+function saveTransaction(){
+	// get user id
+	let userId
+	$.ajax({
+		url: "/api/user/get_current_user_id",
+		type: "get",
+		async: false,
+		success: function(res){
+			userId = res.id
+		}
+	})
 
+	// simpan transaksi baru
+	let id_transaksi
+	let data = {
+		total : _total,
+		id_user: userId
+	}
+	$.ajax({
+		url : "/api/transaksi/create",
+		type : "POST",
+		async : false,
+		data : data,
+		success: function(res){
+			console.log(res)
+			id_transaksi = res.id_transaksi
+		}
+	})
+
+
+
+	// simpan detail transaksi ke database
+	for(let id_item of Object.keys(_keranjang)){
+		let data = {
+			id_transaksi 	: id_transaksi,
+			id_barang  		: id_item,
+			qty 			: _keranjang[id_item].qty
+		}
+
+		$.ajax({
+			url 	: "/api/transaksi/create_detail",
+			type 	: "POST",
+			data 	: data,
+			async 	: false,
+			success : function(res){
+				console.log(res)
+			}
+		})
+	}
+
+	// bikin object yang mencatat perubahan stok barang
+	let changes = {}
+	for(let id_item of Object.keys(_keranjang)){
+		changes[id_item] = {}
+		changes[id_item].stok = _barang[id_item].stok
+	}
+
+	// update stok barang di database
+	for(let id_item of Object.keys(changes)){
+		let data = {
+			id   : id_item,
+			stok : changes[id_item].stok 
+		}
+
+		$.ajax({
+			url 	: "/api/barang/update_stok",
+			type 	: "POST",
+			async   : false,
+			data 	: data,
+			success : function(res){
+				console.log(res)
+			}
+		})
+	}
 }
 
 
 $(document).ready(function(){
+	refresh()
 
 	// tambah item ke keranjang
 	$(document).on("click", ".btnAddItem", function(){
@@ -248,7 +331,10 @@ $(document).ready(function(){
 
 	// bayar
 	$(document).on("click", "#btnProceedCheckout", function(){
-		pay()
+		saveTransaction()
+		_keranjang = {}
+		updateKeranjang()
+		$("#modalCheckout").modal('hide')
 	})
 
 

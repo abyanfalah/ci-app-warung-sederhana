@@ -96,5 +96,38 @@
 				header("Content-type: application/json");
 				echo json_encode($res);
 		}
+
+		public function update_stok()
+		{
+			if(! $this->input->post()){
+				$res = [
+					"message" => "where's the data, bruh?",
+					"status"  => 69420
+				];
+			}
+
+			$id = $this->input->post('id');
+
+			if ($result = $this->barang_model->update_stok($id)) {
+			// if ($id){
+				$res = [
+					"result" => $result,
+					"barang_id" => $id,
+					"stok"      => $this->barang_model->get_by_id($id)->row()->stok,
+					"message"   => "stok barang updated",
+					"status"    => 200
+				];
+			}else{
+				$res = [
+					"result"  => $result,
+					"barang_id" => $id,
+					"message" => "stok barang not updated",
+					"status"  => 500
+				];
+			}
+
+			header("Content-type: application/json");
+			echo json_encode($res);
+		}
 	}
  ?>

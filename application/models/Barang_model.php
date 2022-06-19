@@ -85,18 +85,21 @@
 			return $this->db->get('satuan');
 		}
 
-		public function add_stok($id)
+		public function update_stok($id)
 		{
-			$this->db->set('stok');
-			return $this->db->update($this->table, $this->input->post('stok'), ["id" => $id]);
+			$stok = $this->input->post("stok");
+			$this->db->set("stok", $stok);
+			$this->db->where("id", $id);
+			return $this->db->update($this->table);
 		}
 
 		public function new_id()
 		{
 			$id = 'B001';
-			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row()->id;
+			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row();
 
 			if ($last) {
+				$last = $last->id;
 				$new = substr($last, 1);
 				$new++;
 				$new = substr($id, 0, -(strlen($new))).$new;

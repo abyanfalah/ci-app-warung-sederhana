@@ -44,8 +44,8 @@
 		{
 			$data = [
 				"id" => $this->new_id(),
-				"total" => $this->input->post("total"),
-				"id_user" => $this->input->post("id_user")
+				"total" => $this->input->post('total'),
+				"id_user" => $this->input->post('id_user')
 			];
 			return $this->db->insert($this->table, $data);
 		}
@@ -73,6 +73,7 @@
 			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row();
 
 			if ($last) {
+				$last = $last->id;
 				$new = substr($last, 8);
 				$new++;
 				$new = substr($id, 0, -(strlen($new))).$new;
@@ -81,6 +82,16 @@
 			}else{
 				return date("Ymd").$id;
 			}
+		}
+
+		public function create_detail_transaksi()
+		{
+			$data = [
+				"id_transaksi" => $this->input->post('id_transaksi'),
+				"id_barang" => $this->input->post('id_barang'),
+				"qty" => $this->input->post('qty'),
+			];
+			return $this->db->insert("detail_transaksi", $data);
 		}
 	}
 ?>

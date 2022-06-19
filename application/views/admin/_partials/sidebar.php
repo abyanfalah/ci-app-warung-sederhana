@@ -55,8 +55,15 @@
 </li>
 
 <!-- Nav Item - Dashboard -->
+
 <li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url('transaksi/baru') ?>">
+    <a class="nav-link" href="<?php echo base_url('transaksi') ?>">
+        <i class="fas fa-fw fa-money"></i>
+        <span>Transaksi</span></a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url('transaksi/new') ?>">
         <i class="fas fa-fw fa-money"></i>
         <span>Transaksi Baru</span></a>
 </li>
@@ -95,7 +102,7 @@
 
     <!-- Topbar Search -->
 
-    <!-- <h3><?php echo ucwords($title); ?></h3> -->
+    <h3><?php echo ucwords($title); ?></h3> 
    <!--  <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
@@ -110,12 +117,12 @@
     </form> -->
 
     <!-- Topbar Navbar -->
-    <a href="<?php echo base_url('transaksi/baru') ?>" class="nav-item btn btn-primary ml-auto ">
+   <!--  <a href="<?php echo base_url('transaksi/new') ?>" class="nav-item btn btn-primary ml-auto ">
         <strong>&plus;Transaksi baru</strong>
-    </a>
+    </a> -->
     
     <!-- profil button -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
 
        
         <!-- Nav Item - Alerts -->

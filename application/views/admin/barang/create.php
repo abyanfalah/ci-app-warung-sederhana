@@ -1,4 +1,4 @@
- <h3>Tambah data barang baru</h3>
+ <!-- <h3>Tambah data barang baru</h3> -->
 
  <div class="row">
 	<div class="col-8 mx-auto">

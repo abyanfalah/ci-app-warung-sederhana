@@ -1,4 +1,4 @@
- <h3>Edit informasi barang <?php echo $barang->id; ?></h3>
+ <!-- <h3>Edit informasi barang <?php echo $barang->id; ?></h3> -->
 
  <div class="row">
 	<div class="col-8 mx-auto">

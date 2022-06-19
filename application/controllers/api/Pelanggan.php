@@ -116,5 +116,11 @@
 				header("Content-type: application/json");
 				echo json_encode($res);
 		}
+
+		public function table()
+		{
+			$data['pelanggan'] = $this->pelanggan_model->get_all()->result();
+			$this->load->view('admin/pelanggan/table', $data);
+		}
 	}
  ?>

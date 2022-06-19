@@ -1,14 +1,26 @@
-<h3>Daftar pelanggan</h3>
+<!-- <h3>Daftar pelanggan</h3> -->
 
 <div class="alert alert-success" id="notificationAlert" style="display:none;">
 	<span id="alertMessage"></span>
 	<button data-dismiss="alert" class="close">&times;</button>
 </div>
 
-<button class="btn btn-success" data-toggle="modal" data-target="#modalCreatePelanggan">Tambah pelanggan</button>
 
 <div class="card mt-3">
 	<div class="card-body">
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-success" data-toggle="modal" data-target="#modalCreatePelanggan">Tambah pelanggan</button>
+			</div>
+			<div class="col">
+				<input id="cariPelangganInput" type="text" placeholder="ketik untuk mencari" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<span id="searchQuery"></span>
+			</div>
+		</div>
 		<table class="table table-borderless table-striped">
 			<thead>
 				<tr>
@@ -20,41 +32,8 @@
 				</tr>
 			</thead>
 
-			<tbody>
-				<?php $counter = 1;
-				 foreach ($pelanggan as $p):?>
-					<tr>
-						<td><?php echo $counter++; ?></td>
-						<td><?php echo ucwords($p->nama); ?></td>
-						<td><?php echo $p->telpon; ?></td>
-						<td><?php echo ucwords($p->alamat); ?></td>
-						<td class="col-2 text-center">
-
-							<!-- button edit -->
-							<button
-							data-nama="<?php echo $p->nama; ?>"
-							data-telpon="<?php echo $p->telpon; ?>"
-							data-alamat="<?php echo $p->alamat; ?>"
-							class="btn btn-warning btnUpdate"
-
-							>
-								<i class="fas fa-pen"></i>
-							</button>
-
-							<!-- button delete -->
-							<button
-							data-nama="<?php echo $p->nama ?>"
-							data-telpon="<?php echo $p->telpon; ?>"
-							class="btn btn-danger btnDelete"
-
-							data-toggle="modal" data-target="#modalDeletePelanggan"
-							>
-								<i class="fas fa-trash"></i>
-							</button>
-						</td>
-					</tr>
-
-				<?php endforeach; ?>
+			<tbody id="tablePelanggan">
+				<!-- data di load dengan ajax -->
 			</tbody>
 		</table>
 	</div>

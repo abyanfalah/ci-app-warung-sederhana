@@ -4,21 +4,23 @@ let id
 let _total = 0
 
 
-	$.get("/api/barang", function(res){
-	for(let index of Object.keys(res)){
-			_barang[res[index].id] = {}
-			_barang[res[index].id].nama = res[index].nama 
-			_barang[res[index].id].harga = res[index].harga 
-			_barang[res[index].id].stok = res[index].stok 
-		}
-	})
+$.get("/api/barang", function(res){
+for(let index of Object.keys(res)){
+		_barang[res[index].id] = {}
+		_barang[res[index].id].nama = res[index].nama 
+		_barang[res[index].id].harga = res[index].harga 
+		_barang[res[index].id].stok = res[index].stok 
+	}
+})
 
 
-function refresh(){
-	// fetch object barang dari database
-
-
-
+function setButtonAddItem(){
+	for(let id_item of Object.keys(_barang)){
+		// if (! _barang[id_item].stok) {
+		// 	$(".btnAddItem[data-id="+ id_item +"]")
+		// }
+		checkStok(id_item)
+	}
 }
 
 
@@ -303,9 +305,9 @@ function saveTransaction(){
 }
 
 
-$(document).ready(function(){
-	refresh()
 
+$(document).ready(function(){
+// setButtonAddItem() //disable btnAddItem if stok is < 1
 	// tambah item ke keranjang
 	$(document).on("click", ".btnAddItem", function(){
 		id = $(this).attr('data-id')

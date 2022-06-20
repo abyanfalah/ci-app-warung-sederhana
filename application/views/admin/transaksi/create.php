@@ -39,11 +39,15 @@
 								<td id="<?php echo $b->id."-stok" ?>"><?php echo $b->stok; ?></td>
 								<td class="col-2 text-center">
 									<button
-									class="btn btn-sm btn-primary btnAddItem"
+									class="
+										btn btn-sm btn-primary 
+										btnAddItem
+										<?php echo ($b->stok < 1 ? "btn-secondary" : "")  ?>
+									"
 									data-id="<?php echo $b->id; ?>"
 									data-nama="<?php echo ucwords($b->nama); ?>"
 									data-harga="<?php echo $b->harga; ?>"
-
+									<?php echo ($b->stok < 1 ? "disabled" : "") ?>
 									>
 										<strong>&plus;</strong>
 									</button>

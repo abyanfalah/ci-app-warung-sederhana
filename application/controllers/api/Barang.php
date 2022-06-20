@@ -14,13 +14,13 @@
 		public function index($id = null)
 		{
 			if ($id) {
-				$result = $this->barang_model->get_by_id($id);
+				$result = $this->barang_model->get_by_id($id)->row();
 			}else{
-				$result = $this->barang_model->get_all();
+				$result = $this->barang_model->get_all()->result();
 			}
 
 
-			$res = $result->result();
+			$res = $result;
 			header("Content-type: application/json");
 			echo json_encode($res);
 		}

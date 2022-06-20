@@ -36,9 +36,9 @@
 					t.id,
 					t.total,
 					u.nama as user,
-					p.nama as pelanggan
+					t.pelanggan as pelanggan
 				FROM transaksi t INNER JOIN user u ON t.id_user = u.id
-				INNER JOIN pelanggan p ON t.pelanggan = p.nama
+				-- INNER JOIN pelanggan p ON t.pelanggan = p.nama
 				WHERE t.id = $id
 				ORDER BY t.id
 			");
@@ -76,10 +76,10 @@
 		{
 			$id   = '001';
 			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row();
+			$today = date("Ymd");
 
 			if ($last) {
 				$last = $last->id;
-				$today = date("Ymd");
 				$last_date = substr($last, 0, 8);
 
 				if ($last_date == $today) {
@@ -95,6 +95,13 @@
 			}
 		}
 
+		// ================================================== DETAIL TRANSAKSI
+
+		public function get_detail($id_transaksi)
+		{
+			return $this->db->get_where("detail_transaksi", ["id_transaksi" => $id_transaksi]);
+		}
+
 		public function create_detail_transaksi()
 		{
 			$data = [
@@ -104,6 +111,8 @@
 			];
 			return $this->db->insert("detail_transaksi", $data);
 		}
+
+
 	}
 ?>
 

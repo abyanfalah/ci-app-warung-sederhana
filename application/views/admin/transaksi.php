@@ -46,7 +46,15 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col">
-						<h5>Detail transaksi: <?php echo date("Ymd"); ?></h5>		
+						<div class="row">
+								Transaksi:&nbsp;<strong><div id="viewIdTransaksi"></div></strong>
+						</div>
+						<div class="row">
+							Pelanggan:&nbsp;<strong><div id="viewNamaPelanggan"></div></strong>
+						</div>
+						<div class="row">
+							Kasir:&nbsp;<strong><div id="viewNamaKasir"></div></strong>
+						</div>
 					</div>
 					<div class="col text-right">
 						<button class="btn btn-danger" data-dismiss="modal">Tutup</button>		
@@ -54,24 +62,25 @@
 				</div>
 				
 				
-				<table class="table table-borderless">
+				<table class="table table-borderless table-striped">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>ID</th>
-							<th>harga</th>
-							<th>qty</th>
-							<th>subtotal</th>
+							<th class="col-1">#</th>
+							<th class="col-2">ID</th>
+							<th class="col-2">Nama</th>
+							<th class="col-2">harga</th>
+							<th class="col-1">qty</th>
+							<th class="col-2">subtotal</th>
 						</tr>
 					</thead>
 
 					<tbody id="tableDetailTransaksi">
-
-						<tr class="bg-primary text-white">
-							<td colspan="4"><strong>Total:</strong></td>
-							<td><strong>15.000</strong></td>
-						</tr>
+						<!-- data di generate dengan js -->
 					</tbody>
+						<tr class="bg-primary text-white">
+							<td colspan="5"><strong>Total:</strong></td>
+							<td class="text-right">Rp&nbsp;<strong id="viewGrandTotal"></strong></td>
+						</tr>
 				</table>
 			</div>
 		</div>

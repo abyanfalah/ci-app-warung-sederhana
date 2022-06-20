@@ -1,9 +1,12 @@
     
             <!-- end of container -->
-        </div>
+            </div>
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+        </div>
+        <!-- End of Content Wrapper -->
+
+         <!-- Footer -->
+            <footer class="sticky-footer bg-light mt-3">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Abyan Falah <?php echo date('Y') ?> </span>
@@ -11,9 +14,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

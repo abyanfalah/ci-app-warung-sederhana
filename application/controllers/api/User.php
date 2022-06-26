@@ -105,5 +105,45 @@
 			header("Content-type: application/json");
 			echo json_encode($res);
 		}
+
+		public function check_username()
+		{
+			$result = $this->user_model->check_username();
+			$res = [
+					"result"  => $result,
+					"status"  => 200
+				];
+			header("Content-type: application/json");
+			echo json_encode($res);
+		}
+
+		public function check_username_with_password()
+		{
+			$result = $this->user_model->check_username_with_password();
+			if ($result) {
+				$res = [
+					"result"  => $result,
+					"status"  => 200
+				];
+
+				// set userdata of user with id if credentials are correct
+				$this->store_userdata($result['id']);
+			}else{
+				$res = [
+					"result"  => $result,
+					"status"  => 500
+				];
+			}
+
+			header("Content-type: application/json");
+			echo json_encode($res);
+
+		}
+
+		public function store_userdata($id)
+		{
+			$user = $this->user_model->get_by_id($id)->row_array();
+			$this->session->set_userdata($user);
+		}
 	}
  ?>

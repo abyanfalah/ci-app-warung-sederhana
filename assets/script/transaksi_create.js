@@ -189,8 +189,6 @@ function createTableDetailTransaksi(){
 	let subtotal = 0
 	_total = 0
 	
-	
-
 	for(let id_item of Object.keys(_keranjang)){
 
 		tr = document.createElement("tr")

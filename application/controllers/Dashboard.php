@@ -8,6 +8,12 @@ class Dashboard extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+
+		// Redirect ke halaman login jika belum login
+		if(! $this->session->userdata('username')){
+			redirect('login');
+		}
+
 		$this->load->model('user_model');
 		$this->access = $this->session->userdata('akses');
 		$this->session->unset_userdata('edit');
@@ -25,10 +31,6 @@ class Dashboard extends CI_Controller {
 		$this->load->view($this->access."/_partials/sidebar", $data);
 		$this->load->view($this->access."/dashboard", $data);
 		$this->load->view($this->access."/_partials/footer");
-
-		// var_dump($this->session->userdata);
-
-
 	}
 
 }

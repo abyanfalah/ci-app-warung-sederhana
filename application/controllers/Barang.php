@@ -10,10 +10,13 @@
 			parent::__construct();
 			$this->load->model('barang_model');
 
+			// kalau belum login
 			if(!$this->session->userdata('username')){
 				redirect(base_url('login'));
 			}
+
 			$this->access = $this->session->userdata('akses');
+			
 			if ($this->access != 'admin') {
 				die('Anda bukan admin');
 			}
@@ -68,6 +71,7 @@
 
 		public function delete($id = null)
 		{
+			// kalau barang ada
 			if ($data['barang'] = $this->barang_model->get_by_id($id)->row()) {
 				$data['title'] = 'Hapus barang '.$id;
 				$this->session->set_userdata('delete', $id);
@@ -76,9 +80,19 @@
 				$this->load->view($this->access."/_partials/sidebar", $data);
 				$this->load->view($this->access."/barang/delete", $data);
 				$this->load->view($this->access."/_partials/footer");
-			}else{
+			}
+			// kalo barang ga ada
+			else{
 				show_404();
 			}
+		}
+
+		public function supply()
+		{
+			$data = [
+				"title" => "supply barang",
+				"supplier" => $this->supplier_model->get_all()->result()
+			];
 		}
 	}
 

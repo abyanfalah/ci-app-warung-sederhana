@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	let message = "";
-	let action = "";
+	let action = localStorage.getItem('alertMessage')
 	let barangId = localStorage.getItem('barang_id')
-	if (action = localStorage.getItem('alertMessage')) {
-		switch(localStorage.getItem('alertMessage')){
+	if (action) {
+		switch(action){
 			case "create":
-				message = "barang berhasil dibuat"
+				message = "Barang berhasil dibuat"
 				break;
 
 			case "update":
@@ -21,10 +21,11 @@ $(document).ready(function(){
 				break;
 		}
 
-		console.log(localStorage)
-		console.log(message)
 		$("#alertMessage").text(message)
 		$("#notificationAlert").show();
+		setTimeout(function(){
+			$("#notificationAlert").fadeOut();
+		}, 2500)
 		delete localStorage["alertMessage"];
 		delete localStorage["barang_id"];
 	}

@@ -27,15 +27,11 @@ $(document).ready(function(){
 			type: "POST",
 			data: $("#formUpdateBarang").serialize(),
 			success: function(res){
-				// if (res.status == 200) {
-				// 	localStorage.setItem('barang_id', res.barang_id)
-				// 	localStorage.setItem('alertMessage', 'update')
-				// 	// window.location.replace('http://localhost:8000/barang')
-				// 	window.location.replace('/barang')
-
-				// }
-
-				console.log(res)
+				if (res.status == 200) {
+					localStorage.setItem('barang_id', res.barang_id)
+					localStorage.setItem('alertMessage', 'update')
+					window.location.replace('/barang')
+				}
 			}
 		})
 	})

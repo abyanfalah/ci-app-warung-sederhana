@@ -14,12 +14,10 @@
 				redirect(base_url('login'));
 			}
 			$this->access = $this->session->userdata('akses');
+			
 			if ($this->access != 'admin') {
 				die('Anda bukan admin');
 			}
-
-			$this->session->unset_userdata('edit');
-			$this->session->unset_userdata('delete');
 		}
 
 		private $access;

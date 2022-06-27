@@ -1,13 +1,11 @@
-	
-	// ==========
+// ==========
 	// global variables
 
-	let nama
-	let telpon
+	let id, nama, telpon, asal, action
 	// ==========
 
 function refresh(){
-	$("#tablePelanggan").load('/api/pelanggan/table')
+	$("#tableSupplier").load("/api/supplier/table")
 }
 
 function checkAllFields(formId){
@@ -15,7 +13,7 @@ function checkAllFields(formId){
 	if (
 		! $(form + " input[name=nama]").val() 		||
 		! $(form + " input[name=telpon]").val() 	||
-		! $(form + " input[name=alamat]").val()
+		! $(form + " input[name=asal]").val()
 		) {
 		$(".fieldAlert").fadeIn('fast')
 		return false;
@@ -28,7 +26,7 @@ function checkAllFields(formId){
 function alert(action){
 	switch(action){
 			case "create":
-				message = "Pelanggan berhasil dibuat"
+				message = "Supplier berhasil dibuat"
 				break;
 
 			case "update":
@@ -54,7 +52,6 @@ function alert(action){
 
 $(document).ready(function(){
 
-
 	refresh()
 
 	$(".btnBatal").click(function(){
@@ -64,18 +61,18 @@ $(document).ready(function(){
 
 	// create section
 	$("#btnSaveCreate").click(function(){
-		if (! checkAllFields("formCreatePelanggan")) {
+		if (! checkAllFields("formCreateSupplier")) {
 			return false
 		}
 
 		$.ajax({
-			url: "/api/pelanggan/create",
+			url: "/api/supplier/create",
 			type: "POST",
-			data: $("#formCreatePelanggan").serializeArray(),
+			data: $("#formCreateSupplier").serializeArray(),
 			success: function(res){
 				if (res.status == 200) {
 					refresh()
-					$("#modalCreatePelanggan").modal("hide")
+					$("#modalCreateSupplier").modal("hide")
 					alert('create')
 					$("input").val("")
 					console.log(res)
@@ -86,33 +83,39 @@ $(document).ready(function(){
 
 	// update section
 	$(document).on('click', '.btnUpdate', function(){
-		$("span.pelangganName").text($(this).attr('data-nama'))
+		$("span.supplierName").text($(this).attr('data-nama'))
 
-		let nama = $(this).attr('data-nama')
-		let telpon = $(this).attr('data-telpon')
-		let alamat = $(this).attr('data-alamat')
+		id = $(this).attr('data-id')
+		nama = $(this).attr('data-nama')
+		telpon = $(this).attr('data-telpon')
+		asal = $(this).attr('data-asal')
 		
-		$("#formUpdatePelanggan input[name=old_telpon]").val(telpon)
-		$("#formUpdatePelanggan input[name=nama]").val(nama)		
-		$("#formUpdatePelanggan input[name=telpon]").val(telpon)
-		$("#formUpdatePelanggan input[name=alamat]").val(alamat)
+		$("#formUpdateSupplier input[name=nama]").val(nama)		
+		$("#formUpdateSupplier input[name=telpon]").val(telpon)
+		$("#formUpdateSupplier input[name=asal]").val(asal)
 
-		$("#modalUpdatePelanggan").modal('show')
+		$("#modalUpdateSupplier").modal('show')
 	})	
 
 	$("#btnSaveUpdate").click(function(){
-		if (! checkAllFields("formUpdatePelanggan")) {
+		let data = $("#formUpdateSupplier").serializeArray()
+
+		if (! checkAllFields("formUpdateSupplier")) {
 			return false
 		}
 
+		// add id to data[] at the first index
+		id = {name: "id", value: id}
+		data.unshift(id)
+
 		$.ajax({
-			url: "/api/pelanggan/update",
+			url: "/api/supplier/update",
 			type: "POST",
-			data: $("#formUpdatePelanggan").serializeArray(),
+			data: data,
 			success: function(res){
 				if (res.status == 200) {
 					refresh()
-					$("#modalUpdatePelanggan").modal("hide")
+					$("#modalUpdateSupplier").modal("hide")
 					alert('update')
 					$("input").val("")
 				}
@@ -124,20 +127,20 @@ $(document).ready(function(){
 	// delete section
 	$(document).on('click', '.btnDelete', function(){
 		nama = $(this).attr("data-nama")
-		telpon = $(this).attr("data-telpon")
-		$("span.pelangganName").text(nama)
+		id = $(this).attr("data-id")
+		$("span.supplierName").text(nama)
 
 	})
 
 	$("#btnProceedDelete").click(function(){
 		$.ajax({
-			url: "/api/pelanggan/delete",
+			url: "/api/supplier/delete",
 			type: "POST",
-			data: {telpon: telpon},
+			data: {id: id},
 			success: function(res){
 				if (res.status == 200) {
 					refresh();
-					$("#modalDeletePelanggan").modal("hide")
+					$("#modalDeleteSupplier").modal("hide")
 					alert('delete')
 				}
 				console.log(res)
@@ -158,15 +161,15 @@ $(document).ready(function(){
 
 
 	// search section
-	$("#cariPelangganInput").on(function(){
+	$("#cariSupplierInput").on(function(){
 		
 	})
 
 
 	
-	$("#cariPelangganInput").on({
+	$("#cariSupplierInput").on({
 		keypress: function(){
-			let searchInput = $("#cariPelangganInput").val()
+			let searchInput = $("#cariSupplierInput").val()
 			let query = "SELECT * FROM pelanggan where nama like '%"+ searchInput +"%' or alamat like '%"+ searchInput +"% or telpon like '%"+ searchInput +"%'"
 			$("#searchQuery").text(query)
 			if (! searchInput.val()) {

@@ -21,10 +21,11 @@ $(document).ready(function(){
 				break;
 		}
 
-		console.log(localStorage)
-		console.log(message)
 		$("#alertMessage").text(message)
 		$("#notificationAlert").show();
+		setTimeout(function(){
+			$("#notificationAlert").fadeOut();
+		}, 2500)
 		delete localStorage["alertMessage"];
 		delete localStorage["user_id"];
 	}

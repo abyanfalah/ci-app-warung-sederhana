@@ -2,7 +2,7 @@
 
 <div class="alert alert-success" id="notificationAlert" style="display:none;">
 	<span id="alertMessage"></span>
-	<button data-dismiss="alert" class="close">&times;</button></div>
+</div>
 
 <a class="btn btn-success" href="<?php echo base_url('user/create') ?>">Tambah user baru</a>
 <div class="card mt-3">

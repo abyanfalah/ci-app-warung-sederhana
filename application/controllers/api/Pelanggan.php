@@ -14,13 +14,13 @@
 		public function index($nama = null)
 		{
 			if ($nama) {
-				$result = $this->pelanggan_model->get_by_nama($nama);
+				$result = $this->pelanggan_model->get_by_nama($nama)->row();
 			}else{
-				$result = $this->pelanggan_model->get_all();
+				$result = $this->pelanggan_model->get_all()->result();
 			}
 
 
-			$res = $result->result();
+			$res = $result;
 			header("Content-type: application/json");
 			echo json_encode($res);
 		}

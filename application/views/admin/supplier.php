@@ -2,33 +2,24 @@
 	<span id="alertMessage"></span>
 </div>
 
+<!-- <a class="btn btn-success" href="<?php echo base_url('user/create') ?>">Tambah user baru</a> -->
+<button class="btn btn-success" id="btnAddNewSupplier" data-toggle="modal" data-target="#modalCreateSupplier">Tambah supplier baru</button>
+
 <div class="card mt-3">
 	<div class="card-body">
-		<div class="row">
-			<div class="col">
-				<button class="btn btn-success" data-toggle="modal" data-target="#modalCreatePelanggan">Tambah pelanggan</button>
-			</div>
-			<div class="col">
-				<input id="cariPelangganInput" type="text" placeholder="ketik untuk mencari" class="form-control">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<span id="searchQuery"></span>
-			</div>
-		</div>
 		<table class="table table-borderless table-striped">
 			<thead>
 				<tr>
 					<th>#</th>
+					<th>ID</th>
 					<th>Nama</th>
+					<th>Asal</th>
 					<th>Telpon</th>
-					<th>Alamat</th>
 					<th class="text-center">Opsi</th>
 				</tr>
 			</thead>
 
-			<tbody id="tablePelanggan">
+			<tbody id="tableSupplier">
 				<!-- data di load dengan ajax -->
 			</tbody>
 		</table>
@@ -37,31 +28,31 @@
 
 <!-- MODALS -->
 <!-- Modal create -->
-<div id="modalCreatePelanggan" class="modal fade" data-backdrop="static">
+<div id="modalCreateSupplier" class="modal fade" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered ">
 		<div class="modal-content">
 			<div class="modal-body">
-				<h4>Tambah pelanggan baru</h4>
+				<h4>Tambah supplier baru</h4>
 
-				<!-- form tambah pelanggan -->
-				<form id="formCreatePelanggan" method="post" class="col-8 mx-auto my-3">
+				<!-- form tambah supplier -->
+				<form id="formCreateSupplier" method="post" class="col-8 mx-auto my-3">
 
-					<!-- nama pelanggan -->
+					<!-- nama supplier -->
 					<div class="form-group">
 						<label for="nama">Nama</label>
 						<input name="nama" type="text" class="form-control">
 					</div>
 
-					<!-- telpon pelanggan -->
+					<!-- asal supplier -->
+					<div class="form-group">
+						<label for="asal">Asal</label>
+						<input name="asal" type="text" class="form-control">
+					</div>
+
+					<!-- telpon supplier -->
 					<div class="form-group">
 						<label for="telpon">Telpon</label>
 						<input name="telpon" type="text" class="form-control">
-					</div>
-
-					<!-- alamat pelanggan -->
-					<div class="form-group">
-						<label for="alamat">Alamat</label>
-						<input name="alamat" type="text" class="form-control">
 					</div>
 
 					<div class="alert alert-danger fieldAlert" style="display:none;">
@@ -80,34 +71,31 @@
 
 
 <!-- modal update -->
-<div id="modalUpdatePelanggan" class="modal fade" data-backdrop="static">
+<div id="modalUpdateSupplier" class="modal fade" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered ">
 		<div class="modal-content">
 			<div class="modal-body">
-				<h4>Edit data pelanggan:  <span class="pelangganName"></span></h4>
+				<h4>Edit data supplier:  <span class="supplierName"></span></h4>
 
-				<!-- form update pelanggan -->
-				<form id="formUpdatePelanggan" method="post" class="col-8 mx-auto my-3">
+				<!-- form update supplier -->
+				<form id="formUpdateSupplier" method="post" class="col-8 mx-auto my-3">
 
-					<!-- old_telpon number -->
-					<input name="old_telpon" hidden type="text" class="form-control">
-
-					<!-- nama pelanggan -->
+					<!-- nama supplier -->
 					<div class="form-group">
 						<label for="nama">Nama</label>
 						<input name="nama" type="text" class="form-control">
 					</div>
 
-					<!-- telpon pelanggan -->
+					<!-- asal supplier -->
+					<div class="form-group">
+						<label for="asal">Asal</label>
+						<input name="asal" type="text" class="form-control">
+					</div>
+
+					<!-- telpon supplier -->
 					<div class="form-group">
 						<label for="telpon">Telpon</label>
 						<input name="telpon" type="text" class="form-control">
-					</div>
-
-					<!-- alamat pelanggan -->
-					<div class="form-group">
-						<label for="alamat">Alamat</label>
-						<input name="alamat" type="text" class="form-control">
 					</div>
 
 					<div class="alert alert-danger fieldAlert" style="display:none;">
@@ -126,11 +114,11 @@
 
 
 <!-- modal delete -->
-<div id="modalDeletePelanggan" class="modal fade">
+<div id="modalDeleteSupplier" class="modal fade">
 	<div class="modal-dialog modal-dialog-centered ">
 		<div class="modal-content">
 			<div class="modal-body">
-				<h4>Hapus pelanggan:  <span class="pelangganName"></span>?</h4>
+				<h4>Hapus supplier:  <span class="supplierName"></span>?</h4>
 				</form>
 			</div>
 
@@ -143,4 +131,4 @@
 </div>
 
 
-<script type="text/javascript" src="<?php echo base_url('assets/script/pelanggan.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/script/supplier.js') ?>"></script>

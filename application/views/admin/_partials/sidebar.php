@@ -34,6 +34,8 @@
         <a class="collapse-item" href="<?php echo base_url('barang') ?>">Barang</a>
         <a class="collapse-item" href="<?php echo base_url('user') ?>">User</a>
         <a class="collapse-item" href="<?php echo base_url('pelanggan') ?>">Pelanggan</a>
+        <a class="collapse-item" href="<?php echo base_url('supplier') ?>">Supplier</a>
+        <a class="collapse-item" href="<?php echo base_url('transaksi') ?>">Transaksi</a>
     </div>
 </div>
 </li>
@@ -55,13 +57,6 @@
 </li>
 
 <!-- Nav Item - Dashboard -->
-
-<li class="nav-item">
-    <a class="nav-link" href="<?php echo base_url('transaksi') ?>">
-        <i class="fas fa-fw fa-money"></i>
-        <span>Transaksi</span></a>
-</li>
-
 <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url('transaksi/new') ?>">
         <i class="fas fa-fw fa-money"></i>
@@ -102,32 +97,10 @@
 
     <!-- Topbar Search -->
 
-    <h3><?php echo ucwords($title); ?></h3> 
-   <!--  <form
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form> -->
-
-    <!-- Topbar Navbar -->
-   <!--  <a href="<?php echo base_url('transaksi/new') ?>" class="nav-item btn btn-primary ml-auto ">
-        <strong>&plus;Transaksi baru</strong>
-    </a> -->
+    <h3 style="font-family: 'helvetica'"><?php echo ucwords($title); ?></h3> 
     
     <!-- profil button -->
     <ul class="navbar-nav ml-auto">
-
-       
-        <!-- Nav Item - Alerts -->
-      
-        
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">

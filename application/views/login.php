@@ -24,7 +24,11 @@
 	<!-- Page Wrapper -->
 		<div class="row w-100 vh-100 d-flex justify-content-center align-items-center bg-primary">
 			<div class="col pl-5 text-center text-white">
-				<!-- <span class="display-3" style="font-family: ubuntu;">Warung CI</span> -->
+				<div class="card d-inline-block">
+					<div class="card-body">
+						<span class="display-3 text-primary" style="font-family: ubuntu; font-weight: 400;">Warung</span>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-4 mr-5 pr-5">

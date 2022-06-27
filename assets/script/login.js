@@ -61,14 +61,14 @@ $(document).ready(function(){
 
 		// if username doesn't exists
 		if (! checkUsername(username)) {
-			alertMessage.text('Username tidak ditemukan')
+			alertMessage.text('User tidak ditemukan')
 			$(".alert").addClass('show')
 			return false;
 		}
 
 		// if password is incorrect
 		if (! checkUsernameWithPassword(username, password)) {
-			alertMessage.text('Kata sandi salah')
+			alertMessage.text('Password salah')
 			$(".alert").addClass('show')
 			return false;
 		}

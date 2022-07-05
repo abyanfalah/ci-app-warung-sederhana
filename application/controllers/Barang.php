@@ -8,7 +8,9 @@
 		function __construct()
 		{
 			parent::__construct();
+
 			$this->load->model('barang_model');
+			$this->load->model('supplier_model');
 
 			// kalau belum login
 			if(!$this->session->userdata('username')){
@@ -89,7 +91,13 @@
 			$data = [
 				"title" => "supply barang",
 				"supplier" => $this->supplier_model->get_all()->result()
+				// "new_id" => $this->barang_model->
 			];
+
+			$this->load->view($this->access."/_partials/header", $data);
+			$this->load->view($this->access."/_partials/sidebar", $data);
+			$this->load->view($this->access."/barang/supply", $data);
+			$this->load->view($this->access."/_partials/footer");
 		}
 	}
 

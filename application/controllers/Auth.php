@@ -32,6 +32,7 @@
 		function authenticate()
 		{
 			if ($this->session->has_userdata('username')) {
+				$this->session->set_flashdata('just_logged_in', true);
 				redirect(base_url());
 			}
 		}

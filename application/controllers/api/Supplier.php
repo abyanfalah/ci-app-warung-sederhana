@@ -101,5 +101,16 @@
 			$data['supplier'] = $this->supplier_model->get_all()->result();
 			$this->load->view('admin/supplier/table', $data);
 		}
+
+		public function get_supplier_list()
+		{
+			$access = $this->session->userdata('akses');
+			if (! $access == 'admin') {
+				die('Anda bukan admin');
+			}
+
+			$data['supplier'] = $this->supplier_model->get_all()->result();
+			$this->load->view($access."/supplier/list", $data);
+		}
 	}
  ?>

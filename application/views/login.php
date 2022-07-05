@@ -26,7 +26,10 @@
 			<div class="col pl-5 text-center text-white">
 				<div class="card d-inline-block">
 					<div class="card-body">
-						<span class="display-3 text-primary" style="font-family: ubuntu; font-weight: 400;">Warung</span>
+						<span class="display-3 text-primary" style="font-family: ubuntu; font-weight: 400;">
+							<i class="fa fa-shopping-cart"></i>
+							Warung
+						</span>
 					</div>
 				</div>
 			</div>
@@ -43,7 +46,9 @@
 				</div>
 				<div class="card bg-white">
 					<div class="card-body">
-						<h3 class="mb-3">Login</h3>
+						<h3 class="mb-3"><i class="fas fa-key text-primary"></i> Login</h3>
+
+						<!-- login form -->
 						<form method="post">
 							<input type="text" class="form-control mb-3" name="username" placeholder="Username">
 							<input type="password" class="form-control mb-3" name="password" placeholder="Password">

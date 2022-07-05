@@ -44,6 +44,16 @@
 			");
 		}
 
+		public function get_by_date($date = null)
+		{
+			if (! $date) {
+				$date = date('Ymd');
+			}
+			
+			$this->db->like('id', $date);
+			return $this->db->get($this->table);
+		}
+
 		public function create()
 		{
 			$data = [

@@ -9,6 +9,7 @@
 		{
 			parent::__construct();
 			$this->load->model('barang_model');
+			$this->load->model('supplier_model');
 		}
 
 		public function index($id = null)
@@ -129,5 +130,6 @@
 			header("Content-type: application/json");
 			echo json_encode($res);
 		}
+
 	}
  ?>

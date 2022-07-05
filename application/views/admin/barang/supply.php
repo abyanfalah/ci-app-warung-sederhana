@@ -1,32 +1,15 @@
-
-
 <!-- col pilih supplier dan display data supplier -->
 <div class="row">
 	<div class="col">
-		<strong>Supplier</strong>
-		<button class="btn btn-primary" data-toggle="modal" data-target="#modalPilihSupplier">Pilih supplier</button>
+		<div class="card">
+			<div class="card-body">
+				<strong>Supplier</strong>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#modalPilihSupplier">Pilih supplier</button>
 
-		<div id="supplierDetail" style="display:none;" class="col-6">
-			<div class="row">
-				<div class="col">ID</div>
-				<div class="col" id="idSupplier"></div>
-			</div>
-
-			<div class="row">
-				<div class="col">Nama</div>
-				<div class="col" id="namaSupplier"></div>
-			</div>
-
-			<div class="row">
-				<div class="col">Telpon</div>
-				<div class="col" id="telponSupplier"></div>
-			</div>
-
-			<div class="row">
-				<div class="col">Asal</div>
-				<div class="col" id="asalSupplier"></div>
+				
 			</div>
 		</div>
+
 	</div>
 </div>
 

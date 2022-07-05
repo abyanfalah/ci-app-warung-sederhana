@@ -85,13 +85,6 @@
 						<button id="btnCheckout" class="ml-auto btn btn-secondary" disabled data-toggle="modal" data-target="#modalCheckout">Checkout</button>
 						<table class="table table-borderless">
 							<thead class="text-white">
-								<!-- <tr>
-									<div class="mt-3 bg-white text-primary text-center rounded  p-2">
-											Keranjang
-										</div>
-
-									</div>
-								</tr> -->
 								<tr>
 									<th class="col-1">#</th>
 									<th>ID</th>

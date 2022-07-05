@@ -31,17 +31,32 @@
 </a>
 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="<?php echo base_url('barang') ?>">Barang</a>
-        <a class="collapse-item" href="<?php echo base_url('user') ?>">User</a>
-        <a class="collapse-item" href="<?php echo base_url('pelanggan') ?>">Pelanggan</a>
-        <a class="collapse-item" href="<?php echo base_url('supplier') ?>">Supplier</a>
-        <a class="collapse-item" href="<?php echo base_url('transaksi') ?>">Transaksi</a>
+        <a class="collapse-item" href="<?php echo base_url('barang') ?>">
+            <i class="fas fa-fw fa-boxes"></i>
+            <span>Barang</span>
+        </a>
+        <a class="collapse-item" href="<?php echo base_url('user') ?>">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User</span>
+        </a>
+        <a class="collapse-item" href="<?php echo base_url('pelanggan') ?>">
+            <i class="fas fa-fw fa-user-tag"></i>
+            <span>Pelanggan</span>
+        </a>
+        <a class="collapse-item" href="<?php echo base_url('supplier') ?>">
+            <i class="fas fa-fw fa-truck-loading"></i>
+            <span>Supplier</span>
+        </a>
+        <a class="collapse-item" href="<?php echo base_url('transaksi') ?>">
+            <i class="fas fa-fw fa-list-alt"></i>
+            <span>Transaksi</span>
+        </a>
     </div>
 </div>
 </li>
 
 <!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
     aria-expanded="true" aria-controls="collapseUtilities">
     <i class="fas fa-fw fa-wrench"></i>
@@ -54,13 +69,19 @@
         <a class="collapse-item" href="">Pengaturan 2</a>
     </div>
 </div>
-</li>
+</li> -->
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
     <a class="nav-link" href="<?php echo base_url('transaksi/new') ?>">
-        <i class="fas fa-fw fa-money"></i>
+        <i class="fas fa-fw fa-dollar-sign"></i>
         <span>Transaksi Baru</span></a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url('barang/supply') ?>">
+        <i class="fas fa-fw fa-box-open"></i>
+        <span>Masuk barang</span></a>
 </li>
 
 <li class="nav-item">

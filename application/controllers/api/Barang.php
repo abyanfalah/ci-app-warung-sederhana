@@ -131,5 +131,22 @@
 			echo json_encode($res);
 		}
 
+		public function get_all_with_capitalized_name($id = null)
+		{
+
+			$result = $this->barang_model->get_all()->result();
+
+			// kapitalisasi huruf awal dari nama barang
+			for ($i=0; $i < count($result); $i++) { 
+				$capitalized_nama = ucwords($result[$i]->nama);
+				$result[$i]->nama = $capitalized_nama;
+			}
+
+			$res = $result;
+			header("Content-type: application/json");
+			echo json_encode($res);
+		}
+
+
 	}
  ?>

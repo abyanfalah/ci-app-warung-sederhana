@@ -14,49 +14,49 @@
 						</div>
 					</div>
 					<table class="table table-borderless table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>ID</th>
-							<th>Nama</th>
-							<th>Jenis</th>
-							<th>Harga (Rp)</th>
-							<th>Satuan</th>
-							<th>Stok</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<?php $counter = 1;
-						 foreach ($barang as $b):?>
+						<thead>
 							<tr>
-								<td><?php echo $counter++; ?></td>
-								<td><?php echo $b->id; ?></td>
-								<td class="col-2"><?php echo ucwords($b->nama); ?></td>
-								<td><?php echo ucwords($b->jenis); ?></td>
-								<td class="col-1"><?php echo $b->harga; ?></td>
-								<td><?php echo $b->satuan; ?></td>
-								<td id="<?php echo $b->id."-stok" ?>"><?php echo $b->stok; ?></td>
-								<td class="col-2 text-center">
-									<button
-									class="
-										btn btn-sm btn-primary 
-										btnAddItem
-										<?php echo ($b->stok < 1 ? "btn-secondary" : "")  ?>
-									"
-									data-id="<?php echo $b->id; ?>"
-									data-nama="<?php echo ucwords($b->nama); ?>"
-									data-harga="<?php echo $b->harga; ?>"
-									<?php echo ($b->stok < 1 ? "disabled" : "") ?>
-									>
-										<strong>&plus;</strong>
-									</button>
-								</td>
+								<th>#</th>
+								<th>ID</th>
+								<th>Nama</th>
+								<th>Jenis</th>
+								<th>Harga (Rp)</th>
+								<th>Satuan</th>
+								<th>Stok</th>
 							</tr>
+						</thead>
 
-						<?php endforeach; ?>
-					</tbody>
-				</table>
+						<tbody>
+							<?php $counter = 1;
+							 foreach ($barang as $b):?>
+								<tr>
+									<td><?php echo $counter++; ?></td>
+									<td><?php echo $b->id; ?></td>
+									<td class="col-2"><?php echo ucwords($b->nama); ?></td>
+									<td><?php echo ucwords($b->jenis); ?></td>
+									<td class="col-1"><?php echo $b->harga; ?></td>
+									<td><?php echo $b->satuan; ?></td>
+									<td id="<?php echo $b->id."-stok" ?>"><?php echo $b->stok; ?></td>
+									<td class="col-2 text-center">
+										<button
+										class="
+											btn btn-sm btn-primary 
+											btnAddItem
+											<?php echo ($b->stok < 1 ? "btn-secondary" : "")  ?>
+										"
+										data-id="<?php echo $b->id; ?>"
+										data-nama="<?php echo ucwords($b->nama); ?>"
+										data-harga="<?php echo $b->harga; ?>"
+										<?php echo ($b->stok < 1 ? "disabled" : "") ?>
+										>
+											<strong>&plus;</strong>
+										</button>
+									</td>
+								</tr>
+
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

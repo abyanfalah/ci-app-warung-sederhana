@@ -89,9 +89,9 @@
 		public function supply()
 		{
 			$data = [
-				"title" => "supply barang",
-				"supplier" => $this->supplier_model->get_all()->result()
-				// "new_id" => $this->barang_model->
+				"title"    => "supply barang",
+				"supplier" => $this->supplier_model->get_all()->result(),
+				"barang"   => $this->barang_model->get_all()->result()
 			];
 
 			$this->load->view($this->access."/_partials/header", $data);

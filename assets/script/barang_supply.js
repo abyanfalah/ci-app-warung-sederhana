@@ -62,24 +62,17 @@ function createRowBarangMasuk(idBarang, counter){
 	td.setAttribute("data-id", idBarang)
 	tr.append(td)
 
-	// Nama barang
-	td = document.createElement("td")
-	td.textContent = _barang[idBarang].nama
-	td.setAttribute("data-id", idBarang)
-	tr.append(td)	
+	// nama, stok, satuan
+	for(let field of Object.keys(_barangMasuk[idBarang])){
+		td = document.createElement("td")
+		td.textContent = _barangMasuk[idBarang][field]
+		td.setAttribute("data-id", idBarang)
+		tr.append(td)	
 
-	// Stok
-	td = document.createElement("td")
-	td.textContent = _barang[idBarang].stok
-	td.setAttribute("data-id", idBarang)
-	td.classList.add("stok-baru")
-	tr.append(td)
+	}
 
-	// Satuan
-	td = document.createElement("td")
-	td.textContent = _barang[idBarang].satuan
-	td.setAttribute("data-id", idBarang)
-	tr.append(td)
+
+
 
 	// append to table
 	$("#tableBarangMasuk").append(tr)
@@ -95,17 +88,30 @@ function refreshTableBarangMasuk(){
 }
 
 function editStokBaru(idBarang){
+	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
+	let stok = _barangMasuk[idBarang].stok
+	// jika input sedang di edit, batalkan fungsi
+	if (! tdStok.text()) { return false }
+
+	// create input stok
 	let input = document.createElement("input")
 	input.setAttribute("type", "text")
+	input.setAttribute("data-id", idBarang)
 	input.classList.add("form-control")
-	input.focus
+	input.style.width = "100px"
+	input.setAttribute("value", stok)
 
-	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
 
 	tdStok.empty()
-
 	tdStok.append(input)
-	
+	input.focus()
+}
+
+function displayStok(idBarang){
+	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
+	tdStok.empty()
+	let stok = _barangMasuk[idBarang].stok
+	tdStok.text(stok)
 }
 
 
@@ -126,19 +132,40 @@ $(document).ready(function(){
 	// column tableBarang click action
 	$("#tableBarang td").click(function(){
 		let id = $(this).attr('data-id')
+		
+		// kalau barang sudah ada, batalkan fungsi
+		if (_barangMasuk[id]) { return false }
 
-		if (!_barangMasuk[id]) {
-			_barangMasuk[id] = _barang[id]
-			refreshTableBarangMasuk()
-		}
-
-		console.log(_barang[id])
+		_barangMasuk[id] = _barang[id]
+		refreshTableBarangMasuk()
 	})
 
 	// column tableBarangMASUK click action
 	$(document).on("click", "#tableBarangMasuk td", function(){
 		let id = $(this).attr('data-id')
 		editStokBaru(id)
+	})
+
+	// input stok only number
+	$(document).on("keypress", "#tableBarangMasuk input", function(e){
+		let char = e.keyCode
+		if (char == 13){
+			let id = $(this).attr('data-id')
+			_barangMasuk[id].stok = $(this).val()
+			displayStok(id)
+		}
+
+		if (char < 48 || char > 57) {
+			return false
+		}
+	})
+
+	// input stok blur (unfocus)
+	$(document).on("blur", "#tableBarangMasuk input", function(){
+		let id = $(this).attr('data-id')
+		_barangMasuk[id].stok = $(this).val()
+		displayStok(id)
+
 	})
 })
 

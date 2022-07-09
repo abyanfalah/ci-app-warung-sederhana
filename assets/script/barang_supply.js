@@ -56,25 +56,15 @@ function createRowBarangMasuk(idBarang, counter){
 	td.setAttribute("data-id", idBarang)
 	tr.append(td)
 
-	// id
-	td = document.createElement("td")
-	td.textContent = idBarang
-	td.setAttribute("data-id", idBarang)
-	tr.append(td)
-
 	// nama, stok, satuan
 	for(let field of Object.keys(_barangMasuk[idBarang])){
 		td = document.createElement("td")
 		td.textContent = _barangMasuk[idBarang][field]
 		td.setAttribute("data-id", idBarang)
 		tr.append(td)	
-
 	}
 
-
-
-
-	// append to table
+	// append row to table
 	$("#tableBarangMasuk").append(tr)
 }
 
@@ -88,8 +78,10 @@ function refreshTableBarangMasuk(){
 }
 
 function editStokBaru(idBarang){
+	
 	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
 	let stok = _barangMasuk[idBarang].stok
+
 	// jika input sedang di edit, batalkan fungsi
 	if (! tdStok.text()) { return false }
 
@@ -100,7 +92,6 @@ function editStokBaru(idBarang){
 	input.classList.add("form-control")
 	input.style.width = "100px"
 	input.setAttribute("value", stok)
-
 
 	tdStok.empty()
 	tdStok.append(input)

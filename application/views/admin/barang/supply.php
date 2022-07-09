@@ -76,19 +76,19 @@
 							<th>ID</th>
 							<th>Nama</th>
 							<th>Satuan</th>
-							<th>Stok</th>
+							<!-- <th>Stok</th> -->
 						</tr>
 					</thead>
 
-					<tbody>
+					<tbody id="tableBarang">
 						<?php $counter = 1;
 						 foreach ($barang as $b):?>
 							<tr>
-								<td data-id-barang="<?php echo $b->id; ?>"><?php echo $counter++; ?></td>
-								<td data-id-barang="<?php echo $b->id; ?>"><?php echo $b->id; ?></td>
-								<td data-id-barang="<?php echo $b->id; ?>"><?php echo ucwords($b->nama); ?></td>
-								<td data-id-barang="<?php echo $b->id; ?>"><?php echo $b->satuan; ?></td>
-								<td data-id-barang="<?php echo $b->id; ?>"><?php echo $b->stok; ?></td>
+								<td data-id="<?php echo $b->id; ?>"><?php echo $counter++; ?></td>
+								<td data-id="<?php echo $b->id; ?>"><?php echo $b->id; ?></td>
+								<td data-id="<?php echo $b->id; ?>"><?php echo ucwords($b->nama); ?></td>
+								<td data-id="<?php echo $b->id; ?>"><?php echo $b->satuan; ?></td>
+								<!-- <td data-id-barang="<?php echo $b->id; ?>"><?php echo $b->stok; ?></td> -->
 							</tr>
 
 						<?php endforeach; ?>
@@ -98,22 +98,26 @@
 		</div>
 	</div>
 
-	<div class="col" id="listTerupdate">
+	<div class="col" id="listBarangMasuk">
 		<div class="card">
 			<div class="card-header bg-warning text-dark">
 				<strong>Barang masuk</strong>
+				<button id="test">Test</button>
 			</div>
 			<div class="card-body">
-				<table class="table table-sm table-borderless">
+				<table class="table table-sm table-borderless table-hover">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>ID</th>
 							<th>Nama</th>
+							<th>Stok Baru</th>
 							<th>Satuan</th>
-							<th>Stok</th>
 						</tr>
 					</thead>
+					<tbody id="tableBarangMasuk">
+						
+					</tbody>
 
 
 				</table>
@@ -130,7 +134,6 @@
 
 
 <!-- modal pilih supplier -->
-<!-- modal checkout -->
 <div id="modalPilihSupplier" class="modal fade" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
@@ -164,5 +167,19 @@
 	</div>
 </div>
 
+<!-- modal set qty -->
+<!-- <div class="modal" id="modalSetQty">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content mx-auto shadow-sm" style="width: 300px">
+			<div class="modal-header bg-warning text-white">
+				<strong>Jumlah barang <span class="bg-white text-dark p-1 rounded-sm shadow-sm" id="idBarangMasuk"></span> masuk</strong>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+		</div>
+	</div>
+</div>
+ -->
 
 <script type="text/javascript" src="<?php echo base_url('assets/script/barang_supply.js') ?>"></script>

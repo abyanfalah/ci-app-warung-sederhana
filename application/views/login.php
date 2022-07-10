@@ -17,6 +17,11 @@
 	<!-- Custom styles for this template-->
 	<link href="<?php echo base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
 
+	<!-- baseUrl for api -->
+	<script>
+        const __baseUrl = '<?php echo base_url() ?>'
+    </script>
+
 </head>
 
 <body id="page-top">

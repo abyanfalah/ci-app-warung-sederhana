@@ -56,12 +56,6 @@ function createRowBarangMasuk(idBarang, counter){
 	td.setAttribute("data-id", idBarang)
 	tr.append(td)
 
-	// id
-	td = document.createElement("td")
-	td.textContent = idBarang
-	td.setAttribute("data-id", idBarang)
-	tr.append(td)
-
 	// nama, stok, satuan
 	for(let field of Object.keys(_barangMasuk[idBarang])){
 		td = document.createElement("td")

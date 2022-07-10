@@ -12,7 +12,6 @@ function displaySupplier(){
 	$("#btnPilihSupplierLain").slideDown('fast')
 	$("#modalPilihSupplier").modal('hide')
 
-
 	// isi table supplier dengan data dari object _supplier
 	$("#idSupplier")	.text(_supplier.id)
 	$("#namaSupplier")	.text(_supplier.nama)
@@ -65,11 +64,29 @@ function createRowBarangMasuk(idBarang, counter){
 		if(field == "stok"){
 			td.classList.add("stok-baru")
 			td.classList.add("text-right")
-			td.classList.add("pr-5")
+			td.classList.toggle("pr-3")
 		}	
 
 		tr.append(td)	
 	}
+
+	// btn hapus item
+	td = document.createElement("td")
+	td.innerHTML = "&times"
+	td.classList.add("btnDelete")
+	td.setAttribute("data-id", idBarang)
+
+	// hover this td
+	td.addEventListener("mouseenter", function(){
+		this.classList.add("bg-danger")
+		this.classList.add("text-white")
+	})
+	td.addEventListener("mouseleave", function(){
+		this.classList.remove("bg-danger")
+		this.classList.remove("text-white")
+	})
+
+	tr.append(td)
 
 	// append row to table
 	$("#tableBarangMasuk").append(tr)
@@ -85,21 +102,24 @@ function refreshTableBarangMasuk(){
 }
 
 function editStokBaru(idBarang){
-
 	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
 	let stok = _barangMasuk[idBarang].stok
-
-	// jika input sedang di edit, batalkan fungsi
-	// if (! tdStok.text()) { return false }
 
 	// create input stok
 	let input = document.createElement("input")
 	input.setAttribute("type", "text")
 	input.setAttribute("data-id", idBarang)
+	
 	input.classList.add("form-control")
 	input.classList.add("text-right")
+	input.classList.add("bg-warning")
+	input.style.color = "black"
+	
 	input.style.width = "100px"
-	input.setAttribute("value", stok)
+	
+	if (stok > 0) {
+		input.setAttribute("value", stok)
+	}
 
 	tdStok.empty()
 	tdStok.append(input)
@@ -172,6 +192,24 @@ $(document).ready(function(){
 	$(document).on("blur", "#tableBarangMasuk input", function(){
 		let id = $(this).attr('data-id')
 		updateStok(id)
+	})
+
+	// btn hapus item dari list barang masuk
+	$(document).on("click", "#tableBarangMasuk .btnDelete", function(){
+		let id = $(this).attr("data-id")
+		delete _barangMasuk[id]
+		refreshTableBarangMasuk()
+	})
+
+	// btn simpan
+	$("#btnSimpan").click(function(){
+		let adaBarangMasuk = Object.keys(_barangMasuk).length
+		if (! adaBarangMasuk) { return false }
+	})
+
+	$("#btnConfirmUpdate").click(function(){
+		$(".btnConfirmation").hide('fast')
+		$("#requirePasswordSection").show('fast')
 	})
 
 

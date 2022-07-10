@@ -101,7 +101,16 @@
 	<div class="col" id="listBarangMasuk">
 		<div class="card">
 			<div class="card-header bg-warning text-dark">
-				<strong>Barang masuk</strong>
+				<div class="row">
+					<div class="col d-flex align-items-center">
+						<strong>Barang masuk</strong>
+					</div>
+					<div class="col text-right">
+						<button id="btnSimpan" class="btn bg-light text-warning shadow-sm" data-toggle="modal" data-target="#modalConfirmation">
+							Simpan
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm table-borderless table-hover">
@@ -166,19 +175,25 @@
 	</div>
 </div>
 
-<!-- modal set qty -->
-<!-- <div class="modal" id="modalSetQty">
+<!-- modal confirmation -->
+<div class="modal fade" id="modalConfirmation">
 	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content mx-auto shadow-sm" style="width: 300px">
+		<div class="modal-content">
 			<div class="modal-header bg-warning text-white">
-				<strong>Jumlah barang <span class="bg-white text-dark p-1 rounded-sm shadow-sm" id="idBarangMasuk"></span> masuk</strong>
+				<strong>Update stok?</strong>
+				
 			</div>
 			<div class="modal-body">
-				
+				<button id="btnConfirmUpdate" class="btn btn-primary btnConfirmation">Ya</button>
+				<button class="btn btn-secondary btnConfirmation">Batal</button>
+
+				<div id="requirePasswordSection" style="display: none;">
+					
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
- -->
+
 
 <script type="text/javascript" src="<?php echo base_url('assets/script/barang_supply.js') ?>"></script>

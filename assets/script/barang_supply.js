@@ -146,6 +146,7 @@ $(document).ready(function(){
 
 		_barangMasuk[id] = _barang[id]
 		refreshTableBarangMasuk()
+		editStokBaru(id)
 	})
 
 	// column tableBarangMASUK click action

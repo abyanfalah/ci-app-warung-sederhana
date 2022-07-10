@@ -69,7 +69,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/pelanggan/create",
+			url: __baseUrl+"/api/pelanggan/create",
 			type: "POST",
 			data: $("#formCreatePelanggan").serializeArray(),
 			success: function(res){
@@ -106,7 +106,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/pelanggan/update",
+			url: __baseUrl+"/api/pelanggan/update",
 			type: "POST",
 			data: $("#formUpdatePelanggan").serializeArray(),
 			success: function(res){
@@ -131,7 +131,7 @@ $(document).ready(function(){
 
 	$("#btnProceedDelete").click(function(){
 		$.ajax({
-			url: "/api/pelanggan/delete",
+			url: __baseUrl+"/api/pelanggan/delete",
 			type: "POST",
 			data: {telpon: telpon},
 			success: function(res){

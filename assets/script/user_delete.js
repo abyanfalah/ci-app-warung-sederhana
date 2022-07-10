@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#btnProceedDelete").click(function(){
 		$.ajax({
-			url: "/api/user/delete",
+			url: __baseUrl+"/api/user/delete",
 			type: "POST",
 			success: function(res){
 				if(res.status == 200){

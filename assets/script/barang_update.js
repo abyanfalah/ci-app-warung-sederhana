@@ -23,7 +23,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/barang/update",
+			url: __baseUrl+"/api/barang/update",
 			type: "POST",
 			data: $("#formUpdateBarang").serialize(),
 			success: function(res){

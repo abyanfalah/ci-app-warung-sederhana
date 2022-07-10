@@ -25,7 +25,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/user/update",
+			url: __baseUrl+"/api/user/update",
 			type: "POST",
 			data: $("#formUpdateUser").serialize(),
 			success: function(res){

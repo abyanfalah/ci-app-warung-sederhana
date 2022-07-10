@@ -1,7 +1,7 @@
 function checkUsername(username){
 	let result;
 	$.ajax({
-		url: "/api/user/check_username",
+		url: __baseUrl+"/api/user/check_username",
 		type: "post",
 		async: false,
 		data: {username: username},
@@ -16,7 +16,7 @@ function checkUsername(username){
 function checkUsernameWithPassword(username, password){
 	let result;
 	$.ajax({
-		url: "/api/user/check_username_with_password",
+		url: __baseUrl+"/api/user/check_username_with_password",
 		type: "post",
 		async: false,
 		data: {

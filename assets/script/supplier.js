@@ -5,7 +5,7 @@
 	// ==========
 
 function refresh(){
-	$("#tableSupplier").load("/api/supplier/table")
+	$("#tableSupplier").load(__baseUrl+"/api/supplier/table")
 }
 
 function checkAllFields(formId){
@@ -66,7 +66,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/supplier/create",
+			url: __baseUrl+"/api/supplier/create",
 			type: "POST",
 			data: $("#formCreateSupplier").serializeArray(),
 			success: function(res){
@@ -109,7 +109,7 @@ $(document).ready(function(){
 		data.unshift(id)
 
 		$.ajax({
-			url: "/api/supplier/update",
+			url: __baseUrl+"/api/supplier/update",
 			type: "POST",
 			data: data,
 			success: function(res){
@@ -134,7 +134,7 @@ $(document).ready(function(){
 
 	$("#btnProceedDelete").click(function(){
 		$.ajax({
-			url: "/api/supplier/delete",
+			url: __baseUrl+"/api/supplier/delete",
 			type: "POST",
 			data: {id: id},
 			success: function(res){

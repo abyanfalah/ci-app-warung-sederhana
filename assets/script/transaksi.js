@@ -1,7 +1,7 @@
 function getBarang(id_barang){
 	let barang
 	$.ajax({
-		url : "/api/barang/index/" + id_barang,
+		url : __baseUrl+"/api/barang/index/" + id_barang,
 		type: "get",
 		async: false,
 		success: function(res){
@@ -16,7 +16,7 @@ function getDetailTransaksi(id_transaksi){
 	let detail_transaksi = {}
 
 	$.ajax({
-		url : "/api/transaksi/get_detail/" + id_transaksi,
+		url : __baseUrl+"/api/transaksi/get_detail/" + id_transaksi,
 		type: "get",
 		async: false,
 		success: function(res){
@@ -93,7 +93,7 @@ $(document).ready(function(){
 		let transaksi = {}
 		let id_transaksi = $(this).attr("data-id")
 		$.ajax({
-			url : "/api/transaksi/index/" + id_transaksi,
+			url : __baseUrl+"/api/transaksi/index/" + id_transaksi,
 			type: "get",
 			async : false,
 			success: function(res){

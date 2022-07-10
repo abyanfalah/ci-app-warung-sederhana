@@ -30,7 +30,7 @@ $(document).ready(function(){
 				if (res.status == 200) {
 					localStorage.setItem('barang_id', res.barang_id)
 					localStorage.setItem('alertMessage', 'update')
-					window.location.replace('/barang')
+					window.location.replace(__baseUrl+'/barang')
 				}
 			}
 		})

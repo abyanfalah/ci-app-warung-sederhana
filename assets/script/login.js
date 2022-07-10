@@ -71,7 +71,7 @@ $(document).ready(function(){
 			return false;
 		}
 
-		window.location.replace('/auth/authenticate')
+		window.location.replace(__baseUrl+'/auth/authenticate')
 
 	})
 })

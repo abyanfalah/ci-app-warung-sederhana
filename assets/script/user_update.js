@@ -33,7 +33,7 @@ $(document).ready(function(){
 					localStorage.setItem('user_id', res.user_id)
 					localStorage.setItem('alertMessage', 'update')
 					// window.location.replace('http://localhost:8000/user')
-					window.location.replace('/user')
+					window.location.replace(__baseUrl+'/user')
 
 				}
 			}

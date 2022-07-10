@@ -25,8 +25,7 @@ $(document).ready(function(){
 			success: function(res){
 				if (res.status == 200) {
 					localStorage.setItem('alertMessage', 'create')
-					// window.location.replace('http://localhost:8000/barang')
-					window.location.replace('/barang');
+					window.location.replace(__baseUrl+'/barang');
 				}
 				console.log(res)
 			}

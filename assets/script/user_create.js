@@ -61,7 +61,7 @@ $(document).ready(function(){
 			success: function(res){
 				if (res.status == 200) {
 					localStorage.setItem('alertMessage', 'create')
-					window.location.replace('/user');
+					window.location.replace(__baseUrl+'/user');
 				}
 			}
 		})

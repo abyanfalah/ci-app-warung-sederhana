@@ -102,7 +102,6 @@
 		<div class="card">
 			<div class="card-header bg-warning text-dark">
 				<strong>Barang masuk</strong>
-				<button id="test">Test</button>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm table-borderless table-hover">

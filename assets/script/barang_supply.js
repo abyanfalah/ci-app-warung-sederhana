@@ -61,6 +61,13 @@ function createRowBarangMasuk(idBarang, counter){
 		td = document.createElement("td")
 		td.textContent = _barangMasuk[idBarang][field]
 		td.setAttribute("data-id", idBarang)
+		
+		if(field == "stok"){
+			td.classList.add("stok-baru")
+			td.classList.add("text-right")
+			td.classList.add("pr-5")
+		}	
+
 		tr.append(td)	
 	}
 
@@ -78,24 +85,34 @@ function refreshTableBarangMasuk(){
 }
 
 function editStokBaru(idBarang){
-	
+
 	let tdStok = $("#tableBarangMasuk td[data-id="+idBarang+"].stok-baru")
 	let stok = _barangMasuk[idBarang].stok
 
 	// jika input sedang di edit, batalkan fungsi
-	if (! tdStok.text()) { return false }
+	// if (! tdStok.text()) { return false }
 
 	// create input stok
 	let input = document.createElement("input")
 	input.setAttribute("type", "text")
 	input.setAttribute("data-id", idBarang)
 	input.classList.add("form-control")
+	input.classList.add("text-right")
 	input.style.width = "100px"
 	input.setAttribute("value", stok)
 
 	tdStok.empty()
 	tdStok.append(input)
 	input.focus()
+
+}
+
+function updateStok(idBarang){
+	let stokBaru = $("#tableBarangMasuk input[data-id='"+idBarang+"']").val()
+	if (parseInt(stokBaru) > 0) {
+		_barangMasuk[idBarang].stok = stokBaru
+	}
+	displayStok(idBarang)
 }
 
 function displayStok(idBarang){
@@ -142,8 +159,7 @@ $(document).ready(function(){
 		let char = e.keyCode
 		if (char == 13){
 			let id = $(this).attr('data-id')
-			_barangMasuk[id].stok = $(this).val()
-			displayStok(id)
+			updateStok(id)
 		}
 
 		if (char < 48 || char > 57) {
@@ -154,10 +170,10 @@ $(document).ready(function(){
 	// input stok blur (unfocus)
 	$(document).on("blur", "#tableBarangMasuk input", function(){
 		let id = $(this).attr('data-id')
-		_barangMasuk[id].stok = $(this).val()
-		displayStok(id)
-
+		updateStok(id)
 	})
+
+
 })
 
 

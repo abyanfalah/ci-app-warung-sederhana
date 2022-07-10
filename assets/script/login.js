@@ -1,7 +1,3 @@
-function test(text = "test"){
-	console.log(text)
-}
-
 function checkUsername(username){
 	let result;
 	$.ajax({
@@ -13,6 +9,7 @@ function checkUsername(username){
 			result = res.result
 		}
 	})
+	console.log("checkUsername: ", result)
 	return result
 }
 
@@ -30,6 +27,7 @@ function checkUsernameWithPassword(username, password){
 			result = res.result
 		}
 	})
+	console.log("checkUsernameWithPassword: ", result)
 	return result
 }
 

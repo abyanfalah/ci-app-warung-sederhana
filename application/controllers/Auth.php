@@ -18,6 +18,9 @@
 				redirect(base_url());
 			}
 
+			$user = $this->user_model->get_all()->result();
+			die(var_dump($user));
+
 			$data['title'] = 'login';
 
 			$this->load->view('login', $data);

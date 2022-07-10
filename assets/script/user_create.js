@@ -55,7 +55,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-			url: "/api/user/create",
+			url: __baseUrl+"/api/user/create",
 			type: "POST",
 			data: $("#formCreateUser").serialize(),
 			success: function(res){

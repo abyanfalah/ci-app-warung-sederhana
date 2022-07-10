@@ -4,7 +4,7 @@ let id
 let _total = 0
 
 
-$.get("/api/barang", function(res){
+$.get(__baseUrl+"/api/barang", function(res){
 for(let index of Object.keys(res)){
 		_barang[res[index].id] = {}
 		_barang[res[index].id].nama = res[index].nama 
@@ -225,7 +225,7 @@ function saveTransaction(){
 	// get user id
 	let userId
 	$.ajax({
-		url: "/api/user/get_current_user_id",
+		url: __baseUrl+"/api/user/get_current_user_id",
 		type: "get",
 		async: false,
 		success: function(res){
@@ -245,7 +245,7 @@ function saveTransaction(){
 		pelanggan: pelanggan
 	}
 	$.ajax({
-		url : "/api/transaksi/create",
+		url : __baseUrl+"/api/transaksi/create",
 		type : "POST",
 		async : false,
 		data : data,
@@ -266,7 +266,7 @@ function saveTransaction(){
 		}
 
 		$.ajax({
-			url 	: "/api/transaksi/create_detail",
+			url 	: __baseUrl+"/api/transaksi/create_detail",
 			type 	: "POST",
 			data 	: data,
 			async 	: false,
@@ -291,7 +291,7 @@ function saveTransaction(){
 		}
 
 		$.ajax({
-			url 	: "/api/barang/update_stok",
+			url 	: __baseUrl+"/api/barang/update_stok",
 			type 	: "POST",
 			async   : false,
 			data 	: data,

@@ -4,7 +4,7 @@ let _supplier = {}
 
 
 function loadSupplier(){
-	$("#tableListSupplier").load("/api/supplier/get_supplier_list")
+	$("#tableListSupplier").load(__baseUrl+"/api/supplier/get_supplier_list")
 }
 
 function displaySupplier(){	
@@ -24,7 +24,7 @@ function displaySupplier(){
 
 function loadBarang(){
 	$.ajax({
-		url : "/api/barang/get_all_with_capitalized_name",
+		url : __baseUrl+"/api/barang/get_all_with_capitalized_name",
 		success : function(res){
 			storeResult(res)
 		}

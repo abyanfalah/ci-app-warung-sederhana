@@ -30,7 +30,10 @@
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js') ?>"></script>
 
-
+    <!-- baseUrl global variable -->
+    <script>
+        const __baseUrl = '<?php echo base_url() ?>'
+    </script>
 
 
 </head>

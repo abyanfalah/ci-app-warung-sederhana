@@ -206,7 +206,6 @@
 	</div>
 </div>
 
-<!-- <button id="test" class="btn btn-danger">test</button> -->
 
 <script type="text/javascript" src="<?php echo base_url('assets/script/barang_supply.js') ?>"></script>
 

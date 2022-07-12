@@ -59,14 +59,12 @@ function createRowBarangMasuk(idBarang, counter){
 	for(let field of Object.keys(_barangMasuk[idBarang])){
 		td = document.createElement("td")
 		td.setAttribute("data-id", idBarang)
+		td.textContent = _barangMasuk[idBarang][field]
 		
 		if(field == "stok"){
 			td.classList.add("stok-baru")
 			td.classList.add("text-right")
 			td.classList.toggle("pr-3")
-			td.textContent = 0
-		}else{
-			td.textContent = _barangMasuk[idBarang][field]
 		}
 
 		tr.append(td)	
@@ -182,12 +180,13 @@ function authenticate(){
 function updateDatabaseStok(){
 	console.log("======Update barang======")
 	for(let id of Object.keys(_barangMasuk)){
+		let stokBaru = parseInt(_barang[id].stok) + _barangMasuk[id].stok
 		$.ajax({
 			url : __baseUrl + "/api/barang/update_stok",
 			type: "post",
 			data: {
 				id: id,
-				stok: _barangMasuk[id].stok
+				stok: stokBaru
 			},
 			async: false,
 			success: function(res){
@@ -221,7 +220,9 @@ $(document).ready(function(){
 		// kalau barang sudah ada, batalkan fungsi
 		if (_barangMasuk[id]) { return false }
 
-		_barangMasuk[id] = _barang[id]
+		// deepcopy the obj
+		_barangMasuk[id] = JSON.parse(JSON.stringify(_barang[id]))
+		_barangMasuk[id].stok = 0
 
 		refreshTableBarangMasuk()
 		editStokBaru(id)

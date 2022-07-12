@@ -119,7 +119,7 @@
 							<th>#</th>
 							<th>ID</th>
 							<th>Nama</th>
-							<th>Stok Baru</th>
+							<th>QTY</th>
 							<th>Satuan</th>
 						</tr>
 					</thead>

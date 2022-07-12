@@ -129,7 +129,8 @@ function editStokBaru(idBarang){
 
 function updateStok(idBarang){
 	let stokBaru = $("#tableBarangMasuk input[data-id='"+idBarang+"']").val()
-	if (parseInt(stokBaru) > 0) {
+	stokBaru = parseInt(stokBaru)
+	if (stokBaru > 0) {
 		_barangMasuk[idBarang].stok = stokBaru
 	}
 	displayStok(idBarang)
@@ -141,6 +142,39 @@ function displayStok(idBarang){
 	let stok = _barangMasuk[idBarang].stok
 	tdStok.text(stok)
 }
+
+function getUsername(){
+	let username
+	$.ajax({
+		url : __baseUrl+"/api/user/get_current_username",
+		async: false,
+		success : function(res){
+			username = res.username
+		}
+	})
+	return username
+}
+
+function authenticate(){
+	let username = getUsername()
+	let password = $("form input[type=password][name=passwordConfirmation]").val()
+
+	let result;
+	$.ajax({
+		url: __baseUrl+"/api/user/check_username_with_password",
+		type: "post",
+		async: false,
+		data: {
+			username: username,
+			password: password
+		},
+		success: function(res){
+			result = res.result
+		}
+	})
+	return result
+}
+
 
 
 $(document).ready(function(){
@@ -207,9 +241,30 @@ $(document).ready(function(){
 		if (! adaBarangMasuk) { return false }
 	})
 
+	// btn batal
+	$(".btnCancelConfirmation").click(function(){
+		$(".btnConfirmationSection").show('fast')
+		$("#requirePasswordSection").hide('fast')
+		$("form input[type=password][name=passwordConfirmation]").val('')
+	})
+
+	// btn simpan - ya
 	$("#btnConfirmUpdate").click(function(){
-		$(".btnConfirmation").hide('fast')
+		$(".btnConfirmationSection").hide('fast')
 		$("#requirePasswordSection").show('fast')
+
+		$("form input[type=password][name=passwordConfirmation]").focus()
+	})
+
+	// autentikasi password
+	$("form #btnPasswordConfirmation").click(function(event){
+		event.preventDefault()
+		if (authenticate()) {
+			alert("berhasil update stok")
+		}else{
+			alert("gagal update stok. periksa console")
+		}
+
 	})
 
 
@@ -217,3 +272,7 @@ $(document).ready(function(){
 
 
 $("#sectionPilihBarang").show()
+
+// $("#test").click(function(){
+// 	getUsername()
+// })

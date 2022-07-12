@@ -7,8 +7,7 @@ $(document).ready(function(){
 				if(res.status == 200){
 					localStorage.setItem('user_id', res.user_id)
 					localStorage.setItem('alertMessage', 'delete')
-					// window.location.replace('http://localhost:8000/user')
-					window.location.replace('/user')
+					window.location.replace(__baseUrl+'/user')
 				}
 				console.log(res)
 			}

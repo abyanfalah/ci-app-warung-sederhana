@@ -99,18 +99,24 @@
 		}
 
 		public function update_stok()
-		{
-			if(! $this->input->post()){
+		{	
+			header("Content-type: application/json");
+
+			if(! $this->input->post("id") && ! $this->input->post("stok")){
 				$res = [
-					"message" => "where's the data, bruh?",
-					"status"  => 69420
+					"message" => "data (id, stok) needed to perform stock updation",
+					"status"  => 100,
+					"data" => var_dump($this->input->post())
 				];
+				echo json_encode($res);
+				var_dump($this->input->post());
+				die();
 			}
 
-			$id = $this->input->post('id');
+			$id  = $this->input->post("id");
+			$stok  = $this->input->post("stok");
 
 			if ($result = $this->barang_model->update_stok($id)) {
-			// if ($id){
 				$res = [
 					"result" => $result,
 					"barang_id" => $id,
@@ -126,8 +132,6 @@
 					"status"  => 500
 				];
 			}
-
-			header("Content-type: application/json");
 			echo json_encode($res);
 		}
 

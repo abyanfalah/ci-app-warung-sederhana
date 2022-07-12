@@ -176,7 +176,7 @@
 </div>
 
 <!-- modal confirmation -->
-<div class="modal fade" id="modalConfirmation">
+<div class="modal fade" id="modalConfirmation" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header bg-warning text-white">
@@ -184,16 +184,28 @@
 				
 			</div>
 			<div class="modal-body">
-				<button id="btnConfirmUpdate" class="btn btn-primary btnConfirmation">Ya</button>
-				<button class="btn btn-secondary btnConfirmation">Batal</button>
+				<div class="btnConfirmationSection">
+					<button id="btnConfirmUpdate" class="btn btn-primary">Ya</button>
+					<button class="btn btn-secondary btnCancelConfirmation" data-dismiss="modal">Batal</button>
+				</div>
 
 				<div id="requirePasswordSection" style="display: none;">
-					
+					<form>
+						<div class="form-group">
+							<label>Masukkan Password: </label>
+							<input class="form-control" type="password" name="passwordConfirmation">
+						</div>
+						<button class="btn btn-success" id="btnPasswordConfirmation">Konfirmasi</button>
+						<button class="btn btn-secondary btnCancelConfirmation" data-dismiss="modal">Batal</button>
+					</form>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
+<!-- <button id="test" class="btn btn-danger">test</button> -->
 
 <script type="text/javascript" src="<?php echo base_url('assets/script/barang_supply.js') ?>"></script>
+

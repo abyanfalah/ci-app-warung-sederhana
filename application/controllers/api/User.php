@@ -106,6 +106,15 @@
 			echo json_encode($res);
 		}
 
+		public function get_current_username()
+		{
+			$res = [
+				"username" => $this->session->userdata('username')
+			];
+			header("Content-type: application/json");
+			echo json_encode($res);
+		}
+
 		public function check_username()
 		{
 			$result = $this->user_model->check_username();

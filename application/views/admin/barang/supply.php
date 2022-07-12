@@ -154,7 +154,7 @@
 						<button data-dismiss="modal" class="btn btn-danger">Batal</button>		
 					</div>
 				</div>				
-				<table class="table table-striped" id="tableListSupplier" width="100%">
+				<table class="table table-striped" width="100%">
 								<thead>
 									<tr>
 										<th class="col-1">#</th>
@@ -165,7 +165,7 @@
 									</tr>
 								</thead>
 
-								<tbody>
+								<tbody id="tableListSupplier">
 									<!-- diisi dengan js -->
 								</tbody>
 					</table>
@@ -183,7 +183,7 @@
 				<strong>Update stok?</strong>
 				
 			</div>
-			<div class="modal-body">
+			<div class="modal-body p-3">
 				<div class="btnConfirmationSection">
 					<button id="btnConfirmUpdate" class="btn btn-primary">Ya</button>
 					<button class="btn btn-secondary btnCancelConfirmation" data-dismiss="modal">Batal</button>
@@ -194,6 +194,7 @@
 						<div class="form-group">
 							<label>Masukkan Password: </label>
 							<input class="form-control" type="password" name="passwordConfirmation">
+							<small id="wrongPasswordMessage" class="form-text text-danger" style="display: none;">Password salah!</small>
 						</div>
 						<button class="btn btn-success" id="btnPasswordConfirmation">Konfirmasi</button>
 						<button class="btn btn-secondary btnCancelConfirmation" data-dismiss="modal">Batal</button>

@@ -88,21 +88,21 @@
 			$last = $this->db->query("SELECT id FROM ".$this->table."  ORDER BY id DESC LIMIT 1")->row();
 			$today = date("Ymd");
 
-			if ($last) {
-				$last = $last->id;
-				$last_date = substr($last, 0, 8);
-
-				if ($last_date == $today) {
-					$new = substr($last, 8);
-					$new++;
-					$new = substr($id, 0, -(strlen($new))).$new;
-					return $today.$new;
-				}else{
-					return $today.$id;	
-				}
-			}else{
+			if (! $last) {
 				return $today.$id;
 			}
+				
+			$last = $last->id;
+			$last_date = substr($last, 0, 8);
+
+			if (! $last_date == $today) {
+				return $today.$id;	
+			}
+			
+			$new = substr($last, 8);
+			$new++;
+			$new = substr($id, 0, -(strlen($new))).$new;
+			return $today.$new;
 		}
 
 		// ================================================== DETAIL TRANSAKSI

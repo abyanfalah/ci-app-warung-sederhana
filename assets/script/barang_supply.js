@@ -301,10 +301,3 @@ $(document).ready(function(){
 
 })
 
-
-// $("#wrongPasswordMessage").show()
-$("#sectionPilihBarang").show()
-
-// $("#test").click(function(){
-// 	getUsername()
-// })

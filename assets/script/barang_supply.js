@@ -58,14 +58,16 @@ function createRowBarangMasuk(idBarang, counter){
 	// nama, stok, satuan
 	for(let field of Object.keys(_barangMasuk[idBarang])){
 		td = document.createElement("td")
-		td.textContent = _barangMasuk[idBarang][field]
 		td.setAttribute("data-id", idBarang)
 		
 		if(field == "stok"){
 			td.classList.add("stok-baru")
 			td.classList.add("text-right")
 			td.classList.toggle("pr-3")
-		}	
+			td.textContent = 0
+		}else{
+			td.textContent = _barangMasuk[idBarang][field]
+		}
 
 		tr.append(td)	
 	}
@@ -74,6 +76,8 @@ function createRowBarangMasuk(idBarang, counter){
 	td = document.createElement("td")
 	td.innerHTML = "&times"
 	td.classList.add("btnDelete")
+	td.classList.add("align-items-center")
+	td.classList.add("justify-content-center")
 	td.setAttribute("data-id", idBarang)
 
 	// hover this td
@@ -175,6 +179,25 @@ function authenticate(){
 	return result
 }
 
+function updateDatabaseStok(){
+	console.log("======Update barang======")
+	for(let id of Object.keys(_barangMasuk)){
+		$.ajax({
+			url : __baseUrl + "/api/barang/update_stok",
+			type: "post",
+			data: {
+				id: id,
+				stok: _barangMasuk[id].stok
+			},
+			async: false,
+			success: function(res){
+				console.log(res)
+			}
+		})
+	}
+	console.log("======END OF Update barang+++++++")
+}
+
 
 
 $(document).ready(function(){
@@ -199,6 +222,7 @@ $(document).ready(function(){
 		if (_barangMasuk[id]) { return false }
 
 		_barangMasuk[id] = _barang[id]
+
 		refreshTableBarangMasuk()
 		editStokBaru(id)
 	})
@@ -245,14 +269,14 @@ $(document).ready(function(){
 	$(".btnCancelConfirmation").click(function(){
 		$(".btnConfirmationSection").show('fast')
 		$("#requirePasswordSection").hide('fast')
+		$("#wrongPasswordMessage").hide('fast')
 		$("form input[type=password][name=passwordConfirmation]").val('')
 	})
 
-	// btn simpan - ya
+	// btn simpan > ya
 	$("#btnConfirmUpdate").click(function(){
 		$(".btnConfirmationSection").hide('fast')
 		$("#requirePasswordSection").show('fast')
-
 		$("form input[type=password][name=passwordConfirmation]").focus()
 	})
 
@@ -260,17 +284,24 @@ $(document).ready(function(){
 	$("form #btnPasswordConfirmation").click(function(event){
 		event.preventDefault()
 		if (authenticate()) {
-			alert("berhasil update stok")
+			updateDatabaseStok()
 		}else{
-			alert("gagal update stok. periksa console")
+			$("#wrongPasswordMessage").show('fast')
 		}
 
 	})
+
+	// when typing password
+	$("form input[type=password][name=passwordConfirmation]").keypress(function(){
+		$("#wrongPasswordMessage").hide('fast')
+	})
+
 
 
 })
 
 
+// $("#wrongPasswordMessage").show()
 $("#sectionPilihBarang").show()
 
 // $("#test").click(function(){

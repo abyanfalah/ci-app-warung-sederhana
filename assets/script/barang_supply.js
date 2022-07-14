@@ -286,6 +286,8 @@ $(document).ready(function(){
 		event.preventDefault()
 		if (authenticate()) {
 			updateDatabaseStok()
+			$("#modalConfirmation").modal('hide')
+			for(let barang in _barangMasuk) delete _barangMasuk[barang]
 		}else{
 			$("#wrongPasswordMessage").show('fast')
 		}
